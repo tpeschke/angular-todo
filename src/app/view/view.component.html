@@ -14,9 +14,12 @@
 <div class="goalShell">
   <app-goals-container *ngFor="let item of board.goals"
     [item]="item"
+    [goalEdit]="goalEdit"
+    [toggleGoalEdit]="toggleGoalEdit"
     [deleteGoal]="deleteGoal"
     [addTask]="addTask"
     [deleteTask]="deleteTask"
+    [changeName]="changeName"
   ></app-goals-container>
 
   <div class="addButton" (click)="addGoal()">+Goal</div>

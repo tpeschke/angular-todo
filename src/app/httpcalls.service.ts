@@ -94,6 +94,13 @@ export class HttpcallsService {
       )
   }
 
+  changeGoal(id, name): Observable<Board[]> {
+    return this.http.patch<Board[]>(`http://localhost:3434/changeGoal`, { id, name })
+      .pipe(
+        tap(_ => console.log, catchError(this.handleError('change goal', [])))
+      )
+  }
+
   // DELETE
 
   deleteBoard(teamId, boardId): Observable<Board[]> {

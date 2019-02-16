@@ -9,10 +9,13 @@ export class GoalsContainerComponent implements OnInit {
 
   constructor( ) { }
 
-  @Input() item: any
+  @Input() item: any;
+  @Input() goalEdit: any;
   @Input() deleteGoal: Function;
   @Input() addTask: Function;
   @Input() deleteTask: Function;
+  @Input() toggleGoalEdit: Function;
+  @Input() changeName: Function
 
   ngOnInit() {
 

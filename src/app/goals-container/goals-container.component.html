@@ -1,8 +1,9 @@
 <div class="goalShell">
   <div class="goalHeader">
-    <h2>{{item.name}}</h2>
+    <input *ngIf="goalEdit === item.id" type="text" value="{{item.name}}"  (keyup)="changeName($event)" (click)="changeName($event)"/>
+    <h2 *ngIf="!goalEdit || goalEdit !== item.id">{{item.name}}</h2>
 
-    <div class="editGoal">
+    <div class="editGoal" (click)="toggleGoalEdit($event, item.id, item.name)">
       <div class="editDot"></div>
       <div class="editDot"></div>
       <div class="editDot"></div>

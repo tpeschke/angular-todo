@@ -73,8 +73,7 @@ app.patch('/changeBoard', (req, res) => {
     })
 
     mockDB.boards = newBoards
-
-    res.send('done')
+    res.send(['done'])
 })
 app.patch('/changeGoal', (req, res) => {
     let {id, name} = req.body
@@ -86,7 +85,7 @@ app.patch('/changeGoal', (req, res) => {
     })
     mockDB.goals = newGoals
 
-    res.send('done')
+    res.send(['done'])
 })
 app.patch('/changeTask', ({body}, res) => {
     let newTasks = mockDB.tasks.map(val => {
@@ -98,7 +97,7 @@ app.patch('/changeTask', ({body}, res) => {
 
     mockDB.tasks = newTasks
 
-    res.send('done')
+    res.send(['done'])
 })
 
 app.delete('/removeBoard/:team', ({query, params}, res) => {

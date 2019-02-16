@@ -34,17 +34,36 @@ export class ViewComponent implements OnInit {
     } else {
       let name = this.newName === '' ? this.board.name : this.newName
       this.httpService.changeBoard(+id, name)
-        .subscribe(_ => {
-          this.httpService.getBoard(+id)
-            .subscribe(board => {
-              this.board = board
+      .subscribe(_ => {
+        this.httpService.getBoard(+id)
+        .subscribe(board => {
+          this.board = board
+              this.newName = ''
               this.edit = false
             })
         })
     }
   }
 
-  changeName(e) {
+  toggleGoalEdit = (e, id, newName) => {
+    e.stopPropagation()
+    if (!this.goalEdit && +id) {
+      this.goalEdit = +id
+    } else {
+      let name = this.newName === '' ? newName : this.newName
+      this.httpService.changeGoal(+id, name)
+        .subscribe(_ => {
+          this.httpService.getBoard(+id)
+            .subscribe(board => {
+              this.board = board
+              this.newName = ''
+              this.goalEdit = false
+            })
+        })
+    }
+  }
+
+  changeName = (e) => {
     e.stopPropagation()
     this.newName = e.target.value
   }
