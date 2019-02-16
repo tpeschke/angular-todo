@@ -20,6 +20,11 @@ h2 {
     border-radius: 10px;
     box-shadow: 2px 2px 2px grey;
     position: relative;
+    min-width: 320px;
+}
+
+.goalHeader {
+    display: flex;
 }
 
 .addButton {
@@ -71,6 +76,22 @@ h2 {
     position: absolute;
     bottom: 0;
     right: 0;
+}
+
+.editGoal .editDot {
+    background: grey;
+}
+
+.editGoal:hover .editDot {
+    background: whitesmoke;
+}
+
+.editGoal {
+    width: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 10px;
 }
 
 .editDot {

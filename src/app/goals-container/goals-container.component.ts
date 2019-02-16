@@ -7,11 +7,13 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class GoalsContainerComponent implements OnInit {
 
-  constructor() { }
+  constructor( ) { }
 
-  @Input() item: any 
+  @Input() item: any
+  @Input() deleteGoal: Function;
 
   ngOnInit() {
+    
   }
 
 }

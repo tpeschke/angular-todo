@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   public boards = []
-  public edit: any = 1
+  public edit: any = false
   public newName = ''
 
   ngOnInit() {
@@ -28,7 +28,8 @@ export class HomeComponent implements OnInit {
     if (!this.edit && +id) {
       this.edit = id
     } else {
-      this.httpService.changeBoard(+id, this.newName)
+      let name = this.newName === '' ? this.boards.filter(val => val.id === id)[0].name : this.newName
+      this.httpService.changeBoard(+id, name)
         .subscribe(boards => {
           this.boards = boards
           this.edit = false

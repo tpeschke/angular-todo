@@ -70,6 +70,14 @@ export class HttpcallsService {
         tap(_ => console.log, catchError(this.handleError('add board', [])))
       )
   }
+
+  addGoal(boardId): Observable<Goal[]> {
+    console.log(boardId)
+    return this.http.post<Goal[]>(`http://localhost:3434/addGoal`,{boardId})
+      .pipe(
+        tap(_ => console.log, catchError(this.handleError('add board', [])))
+      )
+  }
   
   // PATCH
 
@@ -84,6 +92,13 @@ export class HttpcallsService {
 
   deleteBoard(teamId, boardId): Observable<Board[]> {
     return this.http.delete<Board[]>(`http://localhost:3434/removeBoard/${teamId}?id=${boardId}`)
+      .pipe(
+        tap(_ => console.log, catchError(this.handleError('delete', [])))
+      )
+  }
+
+  deleteGoal(id): Observable<Board[]> {
+    return this.http.delete<Board[]>(`http://localhost:3434/removeGoal/${id}`)
       .pipe(
         tap(_ => console.log, catchError(this.handleError('delete', [])))
       )

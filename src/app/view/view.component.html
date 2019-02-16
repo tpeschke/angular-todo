@@ -1,9 +1,10 @@
 <div class="headerShell">
   <div class="headerLeft">
     <i class="fa fa-home" routerLink=""></i>
-    <h1 class="boardTitle">{{board.name}}</h1>
+    <input *ngIf="edit" value="{{board.name}}" (keyup)="changeName($event)" (click)="changeName($event)"/>
+    <h1 *ngIf="!edit" class="boardTitle">{{board.name}}</h1>
   </div>
-  <div class="editDots">
+  <div class="editDots" (click)="toggleEdit($event, board.id)">
       <div class="dot"></div>
       <div class="dot"></div>
       <div class="dot"></div>
@@ -13,7 +14,8 @@
 <div class="goalShell">
   <app-goals-container *ngFor="let item of board.goals"
     [item]="item"
+    [deleteGoal]="deleteGoal"
   ></app-goals-container>
 
-  <div class="addButton">+Goal</div>
+  <div class="addButton" (click)="addGoal()">+Goal</div>
 </div>
