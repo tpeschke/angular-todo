@@ -21,4 +21,19 @@ export class HomeComponent implements OnInit {
       })
   }
 
+  addBoard() {
+    this.httpService.addBoard()
+      .subscribe(boards => {
+        this.boards = boards
+      })
+  }
+
+  removeBoard(id, e) {
+    e.stopPropagation()
+    this.httpService.deleteBoard(1, id)
+      .subscribe(boards => {
+        this.boards = boards
+      })
+  }
+
 }

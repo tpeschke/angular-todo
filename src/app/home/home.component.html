@@ -6,8 +6,8 @@
       <div class="dot"></div>
       <div class="dot"></div>
     </div>
-    <div class="delete">X</div>
+    <div class="delete" (click)="removeBoard(board.id, $event)">X</div>
   </div>
 </div>
 
-<div class="addButton">+</div>
+<div class="addButton" (click)="addBoard()">+</div>

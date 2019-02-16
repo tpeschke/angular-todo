@@ -61,4 +61,22 @@ export class HttpcallsService {
         tap(_ => console.log, catchError(this.handleError('get board info', [])))
       )
   }
+
+  // POSTS
+
+  addBoard(): Observable<Board[]> {
+    return this.http.post<Board[]>(`http://localhost:3434/addBoard`,{teamId: 1})
+      .pipe(
+        tap(_ => console.log, catchError(this.handleError('add board', [])))
+      )
+  }
+
+  // DELETE
+
+  deleteBoard(teamId, boardId): Observable<Board[]> {
+    return this.http.delete<Board[]>(`http://localhost:3434/removeBoard/${teamId}?id=${boardId}`)
+      .pipe(
+        tap(_ => console.log, catchError(this.handleError('delete', [])))
+      )
+  }
 }

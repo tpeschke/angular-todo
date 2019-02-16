@@ -42,19 +42,19 @@ module.exports = {
     },{
         id: 2,
         task: 'Task 2',
-        status: 'Added',
+        status: 'In Progress',
         goalId: 2,
         assignedUser: 'John Henry'
     },{
         id: 3,
         task: 'Task 3',
-        status: 'Added',
+        status: 'Stuck',
         goalId: 2,
         assignedUser: 'John Henry'
     },{
         id: 4,
         task: 'Task 4',
-        status: 'Added',
+        status: 'Done',
         goalId: 3,
         assignedUser: 'Mary Holland'
     },{

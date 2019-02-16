@@ -1,3 +1,7 @@
+h2 {
+    font-size: 20px;
+}
+
 .taskShell {
     height: 60px;
     width: 300px;
@@ -5,6 +9,8 @@
     border-radius: 10px;
     box-shadow: 2px 2px 2px grey;
     margin: 10px 0;
+    padding: 10px 15px;
+    position: relative;
 }
 
 .goalShell {
@@ -13,6 +19,7 @@
     margin: 5px;
     border-radius: 10px;
     box-shadow: 2px 2px 2px grey;
+    position: relative;
 }
 
 .addButton {
@@ -41,9 +48,73 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    border-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 .delete:hover {
     background: rgba(165, 0, 0, 0.75);
+}
+
+.editTask {
+    height: 25px;
+    width: 25px;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.editDot {
+    height: 5px;
+    width: 5px;
+    background: rgb(163, 163, 163, .75);
+    border-radius: 5px;
+}
+
+.editTask:hover .editDot {
+    background: grey;
+}
+
+.status {
+    position: absolute;
+    height: 60px;
+    width: 10px;
+    top: 0;
+    left: 0;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.inProgress {
+    background: rgba(255, 166, 0, 0.75);
+}
+
+.stuck {
+    background: rgba(165, 0, 0, 0.75);
+}
+
+.done {
+    background:rgba(1, 100, 1, 0.75)
+}
+
+div>p:last-child {
+    margin-top: 7px;
+}
+
+.assignUser {
+    color: lightgrey;
+}
+
+div>p:first-child {
+    border-bottom: 1px lightgrey solid;
+    width: 25%;
 }

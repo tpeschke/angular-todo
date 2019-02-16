@@ -27,10 +27,11 @@ app.get('/teamMates/:id', (req, res) => {
     res.send(team.users)
 })
 
-app.post('/addBoard', ({body}, res) => {
+app.post('/addBoard', (req, res) => {
+    let {teamId} = req.body
     let newId = Math.max.apply(null, mockDB.boards.map(val => val.id))
-    mockDB.boards.push({id: ++newId, ...body})
-    let boards = mockDB.boards.filter(val => val.teamId === +body.teamId)
+    mockDB.boards.push({id: ++newId, teamId: +teamId, name: `New Board`})
+    let boards = mockDB.boards.filter(val => val.teamId === +teamId)
     res.send(boards)
 })
 app.post('/addGoal', ({body}, res) => {
