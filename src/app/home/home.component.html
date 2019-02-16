@@ -1,7 +1,13 @@
 <div *ngFor="let board of boards">
-  <div routerLink="board/{{board.id}}">
+  <div routerLink="board/{{board.id}}" class="boardShell">
     {{board.name}}
+    <div class="editDots">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+    <div class="delete">X</div>
   </div>
 </div>
 
-<button routerLink="board">Boards</button>
+<div class="addButton">+</div>

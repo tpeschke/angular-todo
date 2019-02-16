@@ -1,0 +1,67 @@
+button {
+    border: none;
+    background: rgba(255, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 7px;
+    color: white
+}
+
+button:hover {
+    background: rgba(165, 0, 0, 0.75);
+}
+
+.headerShell {
+    background: rgba(255, 255, 255);
+    width: 100%;
+    height: 50px;
+    padding: 0px 15px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px grey;
+}
+
+.headerLeft {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 175px;
+}
+
+.fa-home {
+    font-size: 30px;
+    color: rgb(163, 163, 163, .75);
+}
+
+.fa-home:hover {
+    color: grey;
+}
+
+.boardTitle {
+    font-size: 25px;
+}
+
+.goalShell {
+    display: flex;
+    width: 100%;
+}
+
+.addButton {
+    background: rgba(30, 155, 30, 0.75);
+    border-radius: 10px;
+    height: 25px;
+    width: 60px;
+    size: 15px;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 15px;
+}
+
+.addButton:hover {
+    background: rgba(1, 100, 1, 0.75);
+}

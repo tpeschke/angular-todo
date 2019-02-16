@@ -1,8 +1,15 @@
-<div>
-  <button routerLink="">Home</button>
-  <h1>{{board.name}}</h1>
+<div class="headerShell">
+  <div class="headerLeft">
+    <i class="fa fa-home" routerLink=""></i>
+    <h1 class="boardTitle">{{board.name}}</h1>
+  </div>
+  <button>Edit Board</button>
 </div>
 
-<app-goals-container *ngFor="let item of board.goals"
-  [item]="item"
-></app-goals-container>
+<div class="goalShell">
+  <app-goals-container *ngFor="let item of board.goals"
+    [item]="item"
+  ></app-goals-container>
+
+  <div class="addButton">+Goal</div>
+</div>

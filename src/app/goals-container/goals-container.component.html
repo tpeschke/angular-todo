@@ -1,5 +1,14 @@
-<h2>{{item.name}}</h2>
+<div class="goalShell">
+  <h2>{{item.name}}</h2>
+  
+  <div>
+    <div *ngFor="let task of item.tasks" class="taskShell">
+      <p>{{task.task}}</p>
+      <div class="delete">X</div>
+    </div>
 
-<div *ngFor="let task of item.tasks">
-  <p>{{task.task}}</p>
+    <div class="addButton">+Task</div>
+  </div>
+
+  <div class="delete">X</div>
 </div>
