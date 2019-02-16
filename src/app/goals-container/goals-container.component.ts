@@ -24,7 +24,6 @@ export class GoalsContainerComponent implements OnInit {
   @Input() updateOrder: Function;
   @Input() goalList: Array<number>;
 
-  public id: number = 0;
   public userDropdown = false;
   public statusDropdown = false;
   public mates = [];
@@ -37,18 +36,13 @@ export class GoalsContainerComponent implements OnInit {
       })
   }
 
-  captureId(id) {
-    this.id = id
-  }
-
   changeOrder(e) {
     if (e.previousContainer === e.container) {
       moveItemInArray(this.item.tasks, e.previousIndex, e.currentIndex)
-      this.updateOrder({ id: this.id, update: true, newTasks: this.item.tasks})
+      this.updateOrder({ id: e.previousContainer.data.tasks[e.previousIndex].id, newTasks: this.item.tasks})
     } else {
-      console.log(e)
       transferArrayItem(e.previousContainer.data, e.container.data, e.previousIndex, e.currentIndex)
-      this.updateOrder({ id: this.id, update: true, oldGoal: e.previousContainer.data.id, newGoal: e.container.data.id, oldIndex: e.previousIndex, newIndex: e.currentIndex})
+      this.updateOrder({ id: e.previousContainer.data.tasks[e.previousIndex].id, oldGoal: e.previousContainer.data.id, newGoal: e.container.data.id, oldIndex: e.previousIndex, newIndex: e.currentIndex})
     }
   }
 

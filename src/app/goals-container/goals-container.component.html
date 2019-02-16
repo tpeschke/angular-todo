@@ -18,7 +18,7 @@
   <div>
     <div *ngFor="let task of item.tasks" class="taskShell" cdkDrag>
         <!-- EDIT TASK -->
-      <div *ngIf="taskEdit === task.id" (mousedown)="captureId(task.id)">
+      <div *ngIf="taskEdit === task.id">
         <div>
           <input type="text" value="{{task.task}}" class="taskInput" (keyup)="changeName($event)">
 
@@ -78,7 +78,7 @@
       </div>
 
       <!-- DISPLAY TASK -->
-      <div *ngIf="taskEdit !== task.id" (mousedown)="captureId(task.id)">
+      <div *ngIf="taskEdit !== task.id">
         <div *ngIf="task.status === 'Added'"></div>
         <div *ngIf="task.status === 'In Progress'" class="status inProgress"></div>
         <div *ngIf="task.status === 'Stuck'" class="status stuck"></div>

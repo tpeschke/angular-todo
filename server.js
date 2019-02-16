@@ -89,21 +89,24 @@ app.patch('/changeGoal', (req, res) => {
 })
 app.patch('/changeTask', (req, res) => {
     let {body: task} = req.body
-    let {update, ...body} = task
+    let {newTasks, oldGoal, newGoal, oldIndex, newIndex,  ...body} = task
     let goalId = 0;
-    let newTasks = mockDB.tasks.map(val => {
+
+    let updatedTasks = mockDB.tasks.map((val, i) => {
+        if (newTasks) {
+            newTasks.forEach((v, i) => v.id === val.id ? val.index = i : null)
+        }
         if (val.id === +body.id) {
+            if (newGoal) {
+                val.goalId = newGoal
+            }
             goalId = val.goalId
             return Object.assign({}, val, body)
         }
         return val
     })
 
-    if (update) {
-        
-    }
-
-    mockDB.tasks = newTasks
+    mockDB.tasks = updatedTasks
 
     let {boardId} = mockDB.goals.filter(val => val.id === goalId)[0]
     res.send([boardId])
