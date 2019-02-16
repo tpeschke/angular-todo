@@ -15,13 +15,13 @@ export class ViewComponent implements OnInit {
   ) { }
 
   public board: any = {}
-  public edit: boolean = false
-  public goalEdit: any = false
-  public taskEdit: any = false
+  public edit: Boolean = false
+  public goalEdit: Boolean | number = false
+  public taskEdit: Boolean | number = false
   public newName: string = ''
   public goalList: Array<number> = []
 
-  ngOnInit() {
+  ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get('id')
     this.httpService.getBoard(id)
       .subscribe(board => {
@@ -30,7 +30,7 @@ export class ViewComponent implements OnInit {
       })
   }
 
-  toggleEdit(e, id) {
+  toggleEdit(e, id): void {
     e.stopPropagation()
     if (!this.edit && +id) {
       this.edit = true
@@ -48,7 +48,7 @@ export class ViewComponent implements OnInit {
     }
   }
 
-  toggleGoalEdit = (e, id, newName) => {
+  toggleGoalEdit = (e, id, newName): void => {
     e.stopPropagation()
     if (!this.goalEdit && +id) {
       this.goalEdit = +id
@@ -66,7 +66,7 @@ export class ViewComponent implements OnInit {
     }
   }
 
-  toggleTaskEdit = (id, body) => {
+  toggleTaskEdit = (id, body): void => {
     if (!this.taskEdit && +id) {
       this.taskEdit = +id
     } else {
@@ -81,40 +81,40 @@ export class ViewComponent implements OnInit {
     }
   }
 
-  changeName = (e) => {
+  changeName = (e): void => {
     e.stopPropagation()
     this.newName = e.target.value
   }
 
-  addGoal() {
+  addGoal(): void {
     this.httpService.addGoal(this.board.id)
       .subscribe(board => {
         this.board = board
       })
   }
 
-  deleteGoal = (id) => {
+  deleteGoal = (id): void => {
     this.httpService.deleteGoal(id)
       .subscribe(board => {
         this.board = board
       })
   }
 
-  addTask = (id) => {
+  addTask = (id): void => {
     this.httpService.addTask(id)
       .subscribe(board => {
         this.board = board
       })
   }
 
-  deleteTask = (id) => {
+  deleteTask = (id): void => {
     this.httpService.deleteTask(id)
       .subscribe(board => {
         this.board = board
       })
   }
 
-  updateOrder = (body) => {
+  updateOrder = (body): void => {
     this.httpService.changeTask(body)
       .subscribe(boardId => {
         this.httpService.getBoard(boardId[0])

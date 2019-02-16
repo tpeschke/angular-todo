@@ -13,7 +13,7 @@ export class GoalsContainerComponent implements OnInit {
     private httpService: HttpcallsService
   ) { }
 
-  @Input() item: any;
+  @Input() goal: any;
   @Input() goalEdit: string | boolean;
   @Input() taskEdit: string | boolean;
   @Input() deleteGoal: Function;
@@ -24,9 +24,9 @@ export class GoalsContainerComponent implements OnInit {
   @Input() updateOrder: Function;
   @Input() goalList: Array<number>;
 
-  public userDropdown = false;
-  public statusDropdown = false;
-  public mates = [];
+  public userDropdown: Boolean | number = false;
+  public statusDropdown: Boolean | number = false;
+  public mates: Array<string> = [];
   public newTask: any = {};
 
   ngOnInit() {
@@ -36,37 +36,37 @@ export class GoalsContainerComponent implements OnInit {
       })
   }
 
-  changeOrder(e) {
+  changeOrder(e): void {
     if (e.previousContainer === e.container) {
-      moveItemInArray(this.item.tasks, e.previousIndex, e.currentIndex)
-      this.updateOrder({ id: e.previousContainer.data.tasks[e.previousIndex].id, newTasks: this.item.tasks})
+      moveItemInArray(this.goal.tasks, e.previousIndex, e.currentIndex)
+      this.updateOrder({ id: e.previousContainer.data.tasks[e.previousIndex].id, newTasks: this.goal.tasks})
     } else {
       transferArrayItem(e.previousContainer.data, e.container.data, e.previousIndex, e.currentIndex)
       this.updateOrder({ id: e.previousContainer.data.tasks[e.previousIndex].id, oldGoal: e.previousContainer.data.id, newGoal: e.container.data.id, oldIndex: e.previousIndex, newIndex: e.currentIndex})
     }
   }
 
-  toggleUserDropdown() {
+  toggleUserDropdown(): void {
     this.userDropdown = !this.userDropdown
   }
 
-  toggleStatusDropdown() {
+  toggleStatusDropdown(): void {
     this.statusDropdown = !this.statusDropdown
   }
 
-  changeUser(assignedUser) {
+  changeUser(assignedUser): void {
     this.newTask = Object.assign({}, this.newTask, { assignedUser })
   }
 
-  changeStatus(status) {
+  changeStatus(status): void {
     this.newTask = Object.assign({}, this.newTask, { status })
   }
 
-  changeName(e) {
+  changeName(e): void {
     this.newTask = Object.assign({}, this.newTask, { task: e.target.value })
   }
 
-  saveChanges(id) {
+  saveChanges(id): void {
     this.toggleTaskEdit(id, this.newTask)
     this.newTask = {}
   }

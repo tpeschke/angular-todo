@@ -12,8 +12,8 @@
 </div>
 
 <div class="goalShell" cdkDropListGroup>
-  <app-goals-container *ngFor="let item of board.goals"
-    [item]="item"
+  <app-goals-container *ngFor="let goal of board.goals"
+    [goal]="goal"
     [goalEdit]="goalEdit"
     [taskEdit]="taskEdit"
     [toggleGoalEdit]="toggleGoalEdit"
