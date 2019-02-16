@@ -35,10 +35,10 @@ export class ViewComponent implements OnInit {
     } else {
       let name = this.newName === '' ? this.board.name : this.newName
       this.httpService.changeBoard(+id, name)
-      .subscribe(_ => {
-        this.httpService.getBoard(+id)
-        .subscribe(board => {
-          this.board = board
+        .subscribe(_ => {
+          this.httpService.getBoard(+id)
+            .subscribe(board => {
+              this.board = board
               this.newName = ''
               this.edit = false
             })
@@ -68,7 +68,7 @@ export class ViewComponent implements OnInit {
     if (!this.taskEdit && +id) {
       this.taskEdit = +id
     } else {
-      this.httpService.changeTask({id, ...body})
+      this.httpService.changeTask({ id, ...body })
         .subscribe(boardId => {
           this.httpService.getBoard(boardId[0])
             .subscribe(board => {
@@ -114,12 +114,12 @@ export class ViewComponent implements OnInit {
 
   updateOrder = (body) => {
     this.httpService.changeTask(body)
-    .subscribe(boardId => {
-      this.httpService.getBoard(boardId[0])
-        .subscribe(board => {
-          this.board = board
-        })
-    })
+      .subscribe(boardId => {
+        this.httpService.getBoard(boardId[0])
+          .subscribe(board => {
+            this.board = board
+          })
+      })
   }
 
 }

@@ -89,8 +89,8 @@ app.patch('/changeGoal', (req, res) => {
 })
 app.patch('/changeTask', (req, res) => {
     let {body: task} = req.body
-    let {update, newIndex, oldIndex, ...body} = task
-    let goalId = 0
+    let {update, ...body} = task
+    let goalId = 0;
     let newTasks = mockDB.tasks.map(val => {
         if (val.id === +body.id) {
             goalId = val.goalId
@@ -100,16 +100,7 @@ app.patch('/changeTask', (req, res) => {
     })
 
     if (update) {
-        newTasks = newTasks.map(val => {
-            if (goalId === val.goalId) {
-                if (val.id === +body.id) {
-                    val.index = newIndex
-                } else if (val.index < oldIndex || val.index > newIndex) {
-                    val.index = val.index - (newIndex - oldIndex)
-                }
-            }
-            return val
-        })
+        
     }
 
     mockDB.tasks = newTasks

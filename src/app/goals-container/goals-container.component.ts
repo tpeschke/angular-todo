@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpcallsService } from '../httpcalls.service';
+import { transferArrayItem, moveItemInArray } from '@angular/cdk/drag-drop'
 
 @Component({
   selector: 'app-goals-container',
@@ -40,7 +41,13 @@ export class GoalsContainerComponent implements OnInit {
   }
 
   changeOrder(e) {
-    this.updateOrder({ id: this.id, newIndex: e.currentIndex, oldIndex: e.previousIndex, update: true})
+    if (e.previousContainer === e.container) {
+      moveItemInArray(this.item.tasks, e.previousIndex, e.currentIndex)
+    } else {
+      console.log(e)
+      transferArrayItem(e.previousContainer, e.container, e.previousIndex, e.currentIndex)
+    }
+    // this.updateOrder({ id: this.id, newIndex: e.currentIndex, oldIndex: e.previousIndex, update: true, newGoal: this.item.id})
   }
 
   toggleUserDropdown() {
@@ -52,15 +59,15 @@ export class GoalsContainerComponent implements OnInit {
   }
 
   changeUser(assignedUser) {
-    this.newTask = Object.assign({}, this.newTask, {assignedUser})
+    this.newTask = Object.assign({}, this.newTask, { assignedUser })
   }
 
   changeStatus(status) {
-    this.newTask = Object.assign({}, this.newTask, {status})
+    this.newTask = Object.assign({}, this.newTask, { status })
   }
 
   changeName(e) {
-    this.newTask = Object.assign({}, this.newTask, {task: e.target.value})
+    this.newTask = Object.assign({}, this.newTask, { task: e.target.value })
   }
 
   saveChanges(id) {
