@@ -8,7 +8,6 @@ import { ViewComponent } from './view/view.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BoardsContainerComponent } from './boards-container/boards-container.component';
 import { GoalsContainerComponent } from './goals-container/goals-container.component';
-import { TasksContainerComponent } from './tasks-container/tasks-container.component';
 
 @NgModule({
   declarations: [
@@ -16,8 +15,7 @@ import { TasksContainerComponent } from './tasks-container/tasks-container.compo
     HomeComponent,
     ViewComponent,
     BoardsContainerComponent,
-    GoalsContainerComponent,
-    TasksContainerComponent
+    GoalsContainerComponent
   ],
   imports: [
     BrowserModule,

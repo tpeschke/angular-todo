@@ -9,7 +9,7 @@ export class GoalsContainerComponent implements OnInit {
 
   constructor() { }
 
-  @Input() goal: [] 
+  @Input() item: any 
 
   ngOnInit() {
   }
