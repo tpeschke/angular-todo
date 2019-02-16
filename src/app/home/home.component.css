@@ -1,3 +1,10 @@
+input {
+    border: none;
+    background: lightgrey;
+    border-radius: 10px;
+    padding-left: 5px;
+}
+
 .boardShell {
     background: white;
     padding: 10px;

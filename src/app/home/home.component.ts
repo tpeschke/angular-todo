@@ -13,12 +13,27 @@ export class HomeComponent implements OnInit {
   ) { }
 
   public boards = []
+  public edit: any = 1
+  public newName = ''
 
   ngOnInit() {
     this.httpService.getBoards(1)
       .subscribe(boards => {
         this.boards = boards
       })
+  }
+
+  toggleEdit(e, id) {
+    e.stopPropagation()
+    if (!this.edit && +id) {
+      this.edit = id
+    } else {
+      this.httpService.changeBoard(+id, this.newName)
+        .subscribe(boards => {
+          this.boards = boards
+          this.edit = false
+        })
+    }
   }
 
   addBoard() {
@@ -34,6 +49,11 @@ export class HomeComponent implements OnInit {
       .subscribe(boards => {
         this.boards = boards
       })
+  }
+
+  changeName(e) {
+    e.stopPropagation()
+    this.newName = e.target.value
   }
 
 }

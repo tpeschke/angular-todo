@@ -50,6 +50,22 @@ app.post('/addTask', ({body}, res) => {
     res.send(tasks)
 })
 
+app.patch('/changeBoard', (req, res) => {
+    let {id, name} = req.body
+    let teamId = 0
+    let newBoards = mockDB.boards.map(val => {
+        if (val.id === id) {
+            teamId = val.teamId
+            return Object.assign({}, val, {name})
+        }
+        return val
+    })
+
+    mockDB.boards = newBoards
+
+    let boards = mockDB.boards.filter(val => val.teamId === +teamId)
+    res.send(boards)
+})
 app.patch('/changeGoal', ({body}, res) => {
     let newGoals = mockDB.goals.map(val => {
         if (val.id === +body.id) {
