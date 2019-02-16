@@ -157,15 +157,15 @@ input {
     height: 0;
     border-style: solid;
     border-width: 10px 5px 0 5px;
-    border-color: #e0e1ff transparent transparent transparent;
+    border-color: lightgray transparent transparent transparent;
 }
 
 .changeUserShell:hover .triangle {
-    border-color: #9494a8 transparent transparent transparent;
+    border-color: grey transparent transparent transparent;
 }
 
 .changeStatusShell:hover .triangle {
-    border-color: #9494a8 transparent transparent transparent;
+    border-color: grey transparent transparent transparent;
 }
 
 .changeStatusShell {
@@ -179,6 +179,24 @@ input {
     margin: 0;
 }
 
+.statusSelectMenu {
+    width: 105px;
+    background: white;
+    position: absolute;
+    top: 18px;
+    z-index: 1;
+}
+
+.statusChoice {
+    display: flex;
+    justify-content: space-between;
+}
+
+.statusPlaceholder {
+    height: 10px;
+    width: 10px;
+}
+
 .taskInput {
     background: whitesmoke;
     margin-right: 5px;
@@ -189,8 +207,26 @@ input {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
     width: 155px;
     margin-top: 5px;
+}
+
+.userSelectMenu {
+    width: 155px;
+    background: white;
+    position: absolute;
+    top: 18px;
+    z-index: 1;
+}
+
+.mate {
+    padding: 5px;
+    border-top: 3px solid whitesmoke
+}
+
+.mate:hover {
+    background: whitesmoke;
 }
 
 .UserSelect {

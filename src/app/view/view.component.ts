@@ -17,7 +17,7 @@ export class ViewComponent implements OnInit {
   public board: any = {}
   public edit: boolean = false
   public goalEdit: any = false
-  public taskEdit: any = 1
+  public taskEdit: any = false
   public newName: string = ''
 
   ngOnInit() {
@@ -59,6 +59,21 @@ export class ViewComponent implements OnInit {
               this.board = board
               this.newName = ''
               this.goalEdit = false
+            })
+        })
+    }
+  }
+
+  toggleTaskEdit = (id, body) => {
+    if (!this.taskEdit && +id) {
+      this.taskEdit = +id
+    } else {
+      this.httpService.changeTask({id, ...body})
+        .subscribe(boardId => {
+          this.httpService.getBoard(boardId[0])
+            .subscribe(board => {
+              this.board = board
+              this.taskEdit = false
             })
         })
     }

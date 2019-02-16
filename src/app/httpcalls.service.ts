@@ -62,6 +62,13 @@ export class HttpcallsService {
       )
   }
 
+  getTeamMates(): Observable<string[]> {
+    return this.http.get<string[]>(`http://localhost:3434/teamMates/1`)
+      .pipe(
+        tap(_ => console.log, catchError(this.handleError('get board info', [])))
+      )
+  }
+
   // POSTS
 
   addBoard(): Observable<Board[]> {
@@ -98,6 +105,13 @@ export class HttpcallsService {
     return this.http.patch<Board[]>(`http://localhost:3434/changeGoal`, { id, name })
       .pipe(
         tap(_ => console.log, catchError(this.handleError('change goal', [])))
+      )
+  }
+
+  changeTask(body): Observable<Board[]> {
+    return this.http.patch<Board[]>(`http://localhost:3434/changeTask`, { body })
+      .pipe(
+        tap(_ => console.log, catchError(this.handleError('change task', [])))
       )
   }
 

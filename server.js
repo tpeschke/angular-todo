@@ -87,17 +87,21 @@ app.patch('/changeGoal', (req, res) => {
 
     res.send(['done'])
 })
-app.patch('/changeTask', ({body}, res) => {
+app.patch('/changeTask', (req, res) => {
+    let {body} = req.body
+    let goalId = 0
     let newTasks = mockDB.tasks.map(val => {
         if (val.id === +body.id) {
-            return {...val, ...body}
+            goalId = val.goalId
+            return Object.assign({}, val, body)
         }
         return val
     })
 
     mockDB.tasks = newTasks
 
-    res.send(['done'])
+    let {boardId} = mockDB.goals.filter(val => val.id === goalId)[0]
+    res.send([boardId])
 })
 
 app.delete('/removeBoard/:team', ({query, params}, res) => {

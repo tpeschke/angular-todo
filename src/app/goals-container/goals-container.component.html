@@ -11,37 +11,69 @@
     </div>
   </div>
 
-  <!-- EDIT TASK -->
   <div>
     <div *ngFor="let task of item.tasks" class="taskShell">
+        <!-- EDIT TASK -->
       <div *ngIf="taskEdit === task.id">
         <div>
-          <input type="text" value="{{task.task}}" class="taskInput">
-          <p *ngIf="task.assignedUser">{{task.assignedUser}}</p>
+          <input type="text" value="{{task.task}}" class="taskInput" (keyup)="changeName($event)">
 
-          <div class="changeUserShell">
-            <p class="UserSelect">Assign User</p>
+          <div class="changeUserShell" (click)="toggleUserDropdown()">
+            <p class="UserSelect" *ngIf="newTask.assignedUser">{{newTask.assignedUser}}</p>
+            <p class="UserSelect" *ngIf="!newTask.assignedUser">{{task.assignedUser}}</p>
+            <p class="UserSelect" *ngIf="!task.assignedUser && !newTask.assignedUser">Assign User</p>
             <div class="triangle"></div>
+
+            <div class="userSelectMenu" *ngIf="userDropdown">
+              <div *ngFor="let mate of mates" class="mate" (click)="changeUser(mate)">
+                <p>{{mate}}</p>
+              </div>
+              <div *ngIf="task.assignedUser || newTask.assignedUser" class="mate"(click)="changeUser(false)">Remove User</div>
+            </div>
           </div>
         </div>
 
-        <div class="changeStatusShell">
-          <div *ngIf="task.status === 'Added'" class="statusCircle inProgress"></div>
-          <div *ngIf="task.status === 'In Progress'" class="statusCircle inProgress"></div>
-          <div *ngIf="task.status === 'Stuck'" class="statusCircle stuck"></div>
-          <div *ngIf="task.status === 'Done'" class="statusCircle done"></div>
-          <p>{{task.status}}</p>
+        <div class="changeStatusShell" (click)="toggleStatusDropdown()">
+          <div *ngIf="task.status === 'Added' || newTask.status === 'Added'" class="statusCircle"></div>
+          <div *ngIf="task.status === 'In Progress' || newTask.status === 'In Progress'" class="statusCircle inProgress"></div>
+          <div *ngIf="task.status === 'Stuck' || newTask.status === 'Stuck'" class="statusCircle stuck"></div>
+          <div *ngIf="task.status === 'Done' || newTask.status === 'Done'" class="statusCircle done"></div>
+          <p *ngIf="!newTask.status">{{task.status}}</p>
+          <p *ngIf="newTask.status">{{newTask.status}}</p>
           <div class="triangle"></div>
+
+          <div class="statusSelectMenu" *ngIf="statusDropdown">
+              <div *ngIf="task.status !== 'Added'" class="mate statusChoice" (click)="changeStatus('Added')">
+                  <div class="statusCircle"></div>
+                  <p>Added</p>
+                  <div class="statusPlaceholder"></div>
+              </div>
+              <div *ngIf="task.status !== 'In Progress'" class="mate statusChoice" (click)="changeStatus('In Progress')">
+                  <div class="statusCircle inProgress"></div>
+                  <p>In Progress</p>
+                  <div class="statusPlaceholder"></div>
+              </div>
+              <div *ngIf="task.status !== 'Stuck'" class="mate statusChoice" (click)="changeStatus('Stuck')">
+                  <div class="statusCircle stuck"></div>
+                  <p>Stuck</p>
+                  <div class="statusPlaceholder"></div>
+              </div>
+              <div *ngIf="task.status !== 'Done'" class="mate statusChoice" (click)="changeStatus('Done')">
+                  <div class="statusCircle done"></div>
+                  <p>Done</p>
+                  <div class="statusPlaceholder"></div>
+              </div>
+            </div>
         </div>
 
-        <div class="editTask">
+        <div class="editTask" (click)="saveChanges(task.id)">
           <div class="editDot"></div>
           <div class="editDot"></div>
           <div class="editDot"></div>
         </div>
       </div>
 
-      <!-- STATIC TASK -->
+      <!-- DISPLAY TASK -->
       <div *ngIf="taskEdit !== task.id">
         <div *ngIf="task.status === 'Added'"></div>
         <div *ngIf="task.status === 'In Progress'" class="status inProgress"></div>
@@ -54,7 +86,7 @@
           <p *ngIf="!task.assignedUser" class="assignUser">Assign User</p>
         </div>
 
-        <div class="editTask">
+        <div class="editTask" (click)="saveChanges(task.id)">
           <div class="editDot"></div>
           <div class="editDot"></div>
           <div class="editDot"></div>
