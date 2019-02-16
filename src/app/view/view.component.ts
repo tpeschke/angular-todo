@@ -112,4 +112,14 @@ export class ViewComponent implements OnInit {
       })
   }
 
+  updateOrder = (body) => {
+    this.httpService.changeTask(body)
+    .subscribe(boardId => {
+      this.httpService.getBoard(boardId[0])
+        .subscribe(board => {
+          this.board = board
+        })
+    })
+  }
+
 }

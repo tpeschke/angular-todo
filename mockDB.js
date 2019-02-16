@@ -38,42 +38,49 @@ module.exports = {
         task: 'Task 1',
         status: 'Added',
         goalId: 1,
+        index: 0,
         assignedUser: false
     },{
         id: 2,
         task: 'Task 2',
         status: 'In Progress',
         goalId: 2,
+        index: 1,
         assignedUser: 'John Henry'
     },{
         id: 3,
         task: 'Task 3',
         status: 'Stuck',
         goalId: 2,
+        index: 0,
         assignedUser: 'John Henry'
     },{
         id: 4,
         task: 'Task 4',
         status: 'Done',
         goalId: 3,
+        index: 0,
         assignedUser: 'Mary Holland'
     },{
         id: 5,
         task: 'Task 5',
         status: 'Added',
         goalId: 3,
+        index: 2,
         assignedUser: 'Levi Aaron Straus'
     },{
         id: 6,
         task: 'Task 6',
         status: 'Added',
         goalId: 3,
+        index: 1,
         assignedUser: 'Levi Aaron Straus'
     },{
         id: 7,
         task: 'Task 7',
         status: 'Added',
         goalId: 4,
+        index: 0,
         assignedUser: 'John Henry'
     }]
 }

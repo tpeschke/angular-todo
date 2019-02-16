@@ -20,17 +20,27 @@ export class GoalsContainerComponent implements OnInit {
   @Input() deleteTask: Function;
   @Input() toggleGoalEdit: Function;
   @Input() toggleTaskEdit: Function;
+  @Input() updateOrder: Function;
 
   public userDropdown = false;
   public statusDropdown = false;
   public mates = [];
-  public newTask: any = {}
+  public newTask: any = {};
+  public id: number = 0;
 
   ngOnInit() {
     this.httpService.getTeamMates()
       .subscribe(mates => {
         this.mates = mates
       })
+  }
+
+  captureId(id) {
+    this.id = id
+  }
+
+  changeOrder(e) {
+    this.updateOrder({ id: this.id, newIndex: e.currentIndex, oldIndex: e.previousIndex, update: true})
   }
 
   toggleUserDropdown() {

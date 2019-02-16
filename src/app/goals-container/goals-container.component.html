@@ -1,4 +1,4 @@
-<div class="goalShell">
+<div class="goalShell" cdkDropList (cdkDropListDropped)="changeOrder($event)">
   <div class="goalHeader">
     <input *ngIf="goalEdit === item.id" type="text" value="{{item.name}}" (keyup)="changeName($event)"
       (click)="changeName($event)" />
@@ -12,9 +12,9 @@
   </div>
 
   <div>
-    <div *ngFor="let task of item.tasks" class="taskShell">
+    <div *ngFor="let task of item.tasks" class="taskShell" cdkDrag>
         <!-- EDIT TASK -->
-      <div *ngIf="taskEdit === task.id">
+      <div *ngIf="taskEdit === task.id" (mouseover)="captureId(task.id)">
         <div>
           <input type="text" value="{{task.task}}" class="taskInput" (keyup)="changeName($event)">
 
@@ -74,7 +74,7 @@
       </div>
 
       <!-- DISPLAY TASK -->
-      <div *ngIf="taskEdit !== task.id">
+      <div *ngIf="taskEdit !== task.id" (mouseover)="captureId(task.id)">
         <div *ngIf="task.status === 'Added'"></div>
         <div *ngIf="task.status === 'In Progress'" class="status inProgress"></div>
         <div *ngIf="task.status === 'Stuck'" class="status stuck"></div>
