@@ -27,10 +27,10 @@
         <div class="editDot"></div>
       </div>
 
-      <div class="delete">X</div>
+      <div class="delete" (click)="deleteTask(task.id)">X</div>
     </div>
 
-    <div class="addButton">+Task</div>
+    <div class="addButton" (click)="addTask(item.id)">+Task</div>
   </div>
 
   <div class="delete" (click)="deleteGoal(item.id)">X</div>

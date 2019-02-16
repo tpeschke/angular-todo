@@ -63,4 +63,18 @@ export class ViewComponent implements OnInit {
       })
   }
 
+  addTask = (id) => {
+    this.httpService.addTask(id)
+      .subscribe(board => {
+        this.board = board
+      })
+  }
+
+  deleteTask = (id) => {
+    this.httpService.deleteTask(id)
+      .subscribe(board => {
+        this.board = board
+      })
+  }
+
 }

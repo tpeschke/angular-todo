@@ -11,9 +11,11 @@ export class GoalsContainerComponent implements OnInit {
 
   @Input() item: any
   @Input() deleteGoal: Function;
+  @Input() addTask: Function;
+  @Input() deleteTask: Function;
 
   ngOnInit() {
-    
+
   }
 
 }

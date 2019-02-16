@@ -46,11 +46,19 @@ app.post('/addGoal', (req, res) => {
     })
     res.send({...board, goals})
 })
-app.post('/addTask', ({body}, res) => {
+app.post('/addTask', (req, res) => {
+    let {goalId} = req.body
+    let boardId = mockDB.goals.filter(val => val.id === +goalId)[0].boardId
+
     let newId = Math.max.apply(null, mockDB.tasks.map(val => val.id))
-    mockDB.tasks.push({id: ++newId, ...body, status: 'Added', assignedUser: false})
-    let tasks = mockDB.tasks.filter(val => val.goalId === +body.goalId)
-    res.send(tasks)
+    mockDB.tasks.push({id: ++newId, task: "New Task", goalId, status: 'Added', assignedUser: false})
+    
+    let board = mockDB.boards.filter(val => val.id === +boardId)[0]
+    let goals = mockDB.goals.filter(val => val.boardId === +boardId).map(val => {
+        let tasks = mockDB.tasks.filter(v => v.goalId === val.id)
+        return {...val, tasks}
+    })
+    res.send({...board, goals})
 })
 
 app.patch('/changeBoard', (req, res) => {
@@ -148,7 +156,8 @@ app.delete('/removeGoal/:id', (req, res) => {
 app.delete('/removeTask/:id', (req, res) => {
     let {id} = req.params
     let newTasks = []
-    let {goalId} = mockDB.tasks.filter(val => val.id === +id)[0]
+    let {goalId} = mockDB.tasks.filter(v => v.id === +id)[0]
+    let {boardId} = mockDB.goals.filter(v => v.id === goalId)[0]
 
     mockDB.tasks.forEach(v => {
         if (v.id !== +id) {
@@ -158,9 +167,12 @@ app.delete('/removeTask/:id', (req, res) => {
 
     mockDB.tasks = newTasks
 
-    let tasks = mockDB.tasks.filter(v => v.goalId === goalId)
-
-    res.send(tasks)
+    let board = mockDB.boards.filter(val => val.id === boardId)[0]
+    let goals = mockDB.goals.filter(val => val.boardId === +boardId).map(val => {
+        let tasks = mockDB.tasks.filter(v => v.goalId === val.id)
+        return {...val, tasks}
+    })
+    res.send({...board, goals})
 })
 
 app.listen(3434, _=> {

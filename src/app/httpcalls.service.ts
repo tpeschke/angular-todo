@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of} from 'rxjs';
+import { Observable, of, Observer } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 
@@ -65,26 +65,32 @@ export class HttpcallsService {
   // POSTS
 
   addBoard(): Observable<Board[]> {
-    return this.http.post<Board[]>(`http://localhost:3434/addBoard`,{teamId: 1})
+    return this.http.post<Board[]>(`http://localhost:3434/addBoard`, { teamId: 1 })
       .pipe(
         tap(_ => console.log, catchError(this.handleError('add board', [])))
       )
   }
 
   addGoal(boardId): Observable<Goal[]> {
-    console.log(boardId)
-    return this.http.post<Goal[]>(`http://localhost:3434/addGoal`,{boardId})
+    return this.http.post<Goal[]>(`http://localhost:3434/addGoal`, { boardId })
+      .pipe(
+        tap(_ => console.log, catchError(this.handleError('add goal', [])))
+      )
+  }
+
+  addTask(goalId): Observable<Board[]> {
+    return this.http.post<Board[]>(`http://localhost:3434/addTask`, { goalId })
       .pipe(
         tap(_ => console.log, catchError(this.handleError('add board', [])))
       )
   }
-  
+
   // PATCH
 
   changeBoard(id, name): Observable<Board[]> {
-    return this.http.patch<Board[]>(`http://localhost:3434/changeBoard`,{id, name})
+    return this.http.patch<Board[]>(`http://localhost:3434/changeBoard`, { id, name })
       .pipe(
-        tap(_ => console.log, catchError(this.handleError('add board', [])))
+        tap(_ => console.log, catchError(this.handleError('change board', [])))
       )
   }
 
@@ -93,14 +99,21 @@ export class HttpcallsService {
   deleteBoard(teamId, boardId): Observable<Board[]> {
     return this.http.delete<Board[]>(`http://localhost:3434/removeBoard/${teamId}?id=${boardId}`)
       .pipe(
-        tap(_ => console.log, catchError(this.handleError('delete', [])))
+        tap(_ => console.log, catchError(this.handleError('delete board', [])))
       )
   }
 
   deleteGoal(id): Observable<Board[]> {
     return this.http.delete<Board[]>(`http://localhost:3434/removeGoal/${id}`)
       .pipe(
-        tap(_ => console.log, catchError(this.handleError('delete', [])))
+        tap(_ => console.log, catchError(this.handleError('delete goal', [])))
+      )
+  }
+
+  deleteTask(id): Observable<Board[]> {
+    return this.http.delete<Board[]>(`http://localhost:3434/removeTask/${id}`)
+      .pipe(
+        tap(_ => console.log, catchError(this.handleError('delete task', [])))
       )
   }
 }
