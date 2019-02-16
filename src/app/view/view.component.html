@@ -1,5 +1,8 @@
-<p>
-  view works!
-
+<div>
   <button routerLink="">Home</button>
-</p>
+  <h1>{{board.name}}</h1>
+</div>
+
+<app-goals-container *ngFor="let item of board.goals"
+
+></app-goals-container>

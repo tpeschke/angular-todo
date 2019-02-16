@@ -6,7 +6,7 @@ import { ViewComponent } from './view/view.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'board', component: ViewComponent}
+  {path: 'board/:id', component: ViewComponent}
 ]
 
 @NgModule({

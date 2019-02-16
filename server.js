@@ -1,9 +1,11 @@
 const express = require('express')
     , bodyParser = require('body-parser')
     , mockDB = require('./mockDB')
+    , cors = require('cors')
 
 const app = new express()
 app.use(bodyParser.json())
+app.use(cors())
 
 app.get('/teamBoards/:id', (req, res) => {
     let {id} = req.params

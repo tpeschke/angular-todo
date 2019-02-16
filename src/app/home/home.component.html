@@ -1,5 +1,7 @@
-<p>
-  home works!
-</p>
+<div *ngFor="let board of boards">
+  <div routerLink="board/{{board.id}}">
+    {{board.name}}
+  </div>
+</div>
 
 <button routerLink="board">Boards</button>
