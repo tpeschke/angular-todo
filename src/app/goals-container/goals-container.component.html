@@ -1,8 +1,6 @@
 <div class="goalShell"
-  cdkDropList  
-  ng-attr-id="addId(i,j)"
-  [cdkDropListData]="goal"
-  [cdkDropListConnectedTo]="[goalList]"
+  cdkDropList 
+  [cdkDropListData]="item"
   (cdkDropListDropped)="changeOrder($event)" 
   >
   <div class="goalHeader">

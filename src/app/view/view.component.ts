@@ -19,12 +19,14 @@ export class ViewComponent implements OnInit {
   public goalEdit: any = false
   public taskEdit: any = false
   public newName: string = ''
+  public goalList: Array<number> = []
 
   ngOnInit() {
     let id = this.route.snapshot.paramMap.get('id')
     this.httpService.getBoard(id)
       .subscribe(board => {
         this.board = board
+        this.goalList = this.board.goals.map(val => val.id)
       })
   }
 
