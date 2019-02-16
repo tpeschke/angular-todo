@@ -10,7 +10,8 @@ export class GoalsContainerComponent implements OnInit {
   constructor( ) { }
 
   @Input() item: any;
-  @Input() goalEdit: any;
+  @Input() goalEdit: string | boolean;
+  @Input() taskEdit: string | boolean;
   @Input() deleteGoal: Function;
   @Input() addTask: Function;
   @Input() deleteTask: Function;

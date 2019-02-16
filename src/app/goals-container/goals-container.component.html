@@ -1,6 +1,7 @@
 <div class="goalShell">
   <div class="goalHeader">
-    <input *ngIf="goalEdit === item.id" type="text" value="{{item.name}}"  (keyup)="changeName($event)" (click)="changeName($event)"/>
+    <input *ngIf="goalEdit === item.id" type="text" value="{{item.name}}" (keyup)="changeName($event)"
+      (click)="changeName($event)" />
     <h2 *ngIf="!goalEdit || goalEdit !== item.id">{{item.name}}</h2>
 
     <div class="editGoal" (click)="toggleGoalEdit($event, item.id, item.name)">
@@ -10,25 +11,57 @@
     </div>
   </div>
 
+  <!-- EDIT TASK -->
   <div>
     <div *ngFor="let task of item.tasks" class="taskShell">
-      <div *ngIf="task.status === 'Added'"></div>
-      <div *ngIf="task.status === 'In Progress'" class="status inProgress"></div>
-      <div *ngIf="task.status === 'Stuck'" class="status stuck"></div>
-      <div *ngIf="task.status === 'Done'" class="status done"></div>
-      <div>
-        <p>{{task.task}}</p>
-        <p *ngIf="task.assignedUser">{{task.assignedUser}}</p>
-        <p *ngIf="!task.assignedUser" class="assignUser">Assign User</p>
+      <div *ngIf="taskEdit === task.id">
+        <div>
+          <input type="text" value="{{task.task}}" class="taskInput">
+          <p *ngIf="task.assignedUser">{{task.assignedUser}}</p>
+
+          <div class="changeUserShell">
+            <p class="UserSelect">Assign User</p>
+            <div class="triangle"></div>
+          </div>
+        </div>
+
+        <div class="changeStatusShell">
+          <div *ngIf="task.status === 'Added'" class="statusCircle inProgress"></div>
+          <div *ngIf="task.status === 'In Progress'" class="statusCircle inProgress"></div>
+          <div *ngIf="task.status === 'Stuck'" class="statusCircle stuck"></div>
+          <div *ngIf="task.status === 'Done'" class="statusCircle done"></div>
+          <p>{{task.status}}</p>
+          <div class="triangle"></div>
+        </div>
+
+        <div class="editTask">
+          <div class="editDot"></div>
+          <div class="editDot"></div>
+          <div class="editDot"></div>
+        </div>
       </div>
 
-      <div class="editTask">
-        <div class="editDot"></div>
-        <div class="editDot"></div>
-        <div class="editDot"></div>
-      </div>
+      <!-- STATIC TASK -->
+      <div *ngIf="taskEdit !== task.id">
+        <div *ngIf="task.status === 'Added'"></div>
+        <div *ngIf="task.status === 'In Progress'" class="status inProgress"></div>
+        <div *ngIf="task.status === 'Stuck'" class="status stuck"></div>
+        <div *ngIf="task.status === 'Done'" class="status done"></div>
 
-      <div class="delete" (click)="deleteTask(task.id)">X</div>
+        <div class="taskSelect">
+          <p>{{task.task}}</p>
+          <p *ngIf="task.assignedUser">{{task.assignedUser}}</p>
+          <p *ngIf="!task.assignedUser" class="assignUser">Assign User</p>
+        </div>
+
+        <div class="editTask">
+          <div class="editDot"></div>
+          <div class="editDot"></div>
+          <div class="editDot"></div>
+        </div>
+
+        <div class="delete" (click)="deleteTask(task.id)">X</div>
+      </div>
     </div>
 
     <div class="addButton" (click)="addTask(item.id)">+Task</div>

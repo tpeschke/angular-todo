@@ -121,6 +121,12 @@ input {
     border-bottom-left-radius: 10px;
 }
 
+.statusCircle {
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+}
+
 .inProgress {
     background: rgba(255, 166, 0, 0.75);
 }
@@ -133,7 +139,7 @@ input {
     background:rgba(1, 100, 1, 0.75)
 }
 
-div>p:last-child {
+.taskSelect>p:last-child {
     margin-top: 7px;
 }
 
@@ -141,7 +147,52 @@ div>p:last-child {
     color: lightgrey;
 }
 
-div>p:first-child {
+.taskSelect>p:first-child {
     border-bottom: 1px lightgrey solid;
     width: 25%;
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 5px 0 5px;
+    border-color: #e0e1ff transparent transparent transparent;
+}
+
+.changeUserShell:hover .triangle {
+    border-color: #9494a8 transparent transparent transparent;
+}
+
+.changeStatusShell:hover .triangle {
+    border-color: #9494a8 transparent transparent transparent;
+}
+
+.changeStatusShell {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 105px;
+    margin: 0;
+}
+
+.taskInput {
+    background: whitesmoke;
+    margin-right: 5px;
+    width: 155px;
+}
+
+.changeUserShell {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 155px;
+    margin-top: 5px;
+}
+
+.UserSelect {
+    min-width: 100px;
 }

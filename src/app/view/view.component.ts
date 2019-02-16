@@ -17,6 +17,7 @@ export class ViewComponent implements OnInit {
   public board: any = {}
   public edit: boolean = false
   public goalEdit: any = false
+  public taskEdit: any = 1
   public newName: string = ''
 
   ngOnInit() {
