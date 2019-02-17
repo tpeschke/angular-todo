@@ -22,7 +22,7 @@ input {
 .goalShell {
     background: lightgrey;
     padding: 10px;
-    margin: 5px;
+    margin: 10px 5px;
     border-radius: 10px;
     box-shadow: 2px 2px 2px grey;
     position: relative;
@@ -231,4 +231,10 @@ input {
 
 .UserSelect {
     min-width: 100px;
+}
+
+@media (max-width: 321px) {
+    .goalShell {
+        margin: 10px 0;
+    }
 }

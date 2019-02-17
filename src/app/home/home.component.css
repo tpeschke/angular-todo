@@ -5,12 +5,19 @@ input {
     padding-left: 5px;
 }
 
+.boardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .boardShell {
     background: white;
     padding: 10px;
     margin: 10px;
     position: relative;
     width: 35%;
+    min-width: 320px;
     border-radius: 10px;
     box-shadow: 2px 2px 2px grey;
 }
@@ -58,16 +65,28 @@ input {
     background: rgba(30, 155, 30, 0.75);
     border-radius: 10px;
     height: 25px;
-    width: 25px;
+    width: 75px;
     size: 15px;
-    margin-left: 10px;
+    margin: 10px auto;
     font-weight: bold;
     color: white;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
 }
 
 .addButton:hover {
     background: rgba(1, 100, 1, 0.75);
+}
+
+@media (max-width: 321px) {
+    .boardShell {
+        margin: 10px 0px;
+    }
+}
+
+@media (min-width: 769px) {
+    .boardShell {
+        width: 400px;
+    }
 }

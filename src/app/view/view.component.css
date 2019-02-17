@@ -62,20 +62,29 @@ input {
 .goalShell {
     display: flex;
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.addButtonShell {
+    width: 320px;
+    margin-top: 10px
 }
 
 .addButton {
     background: rgba(30, 155, 30, 0.75);
     border-radius: 10px;
     height: 25px;
-    min-width: 80px;
+    width: 80px;
     size: 15px;
     font-weight: bold;
     color: white;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin: 15px;
+    margin: 0px auto;
 }
 
 .addButton:hover {
