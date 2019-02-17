@@ -55,7 +55,12 @@ export class GoalsContainerComponent implements OnInit {
   }
 
   changeUser(assignedUser): void {
-    this.newTask = Object.assign({}, this.newTask, { assignedUser })
+    let clearedUser = false
+    if (!assignedUser) {
+      clearedUser = true
+    }
+    this.newTask = Object.assign({}, this.newTask, { assignedUser, clearedUser })
+    console.log(this.newTask)
   }
 
   changeStatus(status): void {
@@ -67,7 +72,8 @@ export class GoalsContainerComponent implements OnInit {
   }
 
   saveChanges(id): void {
-    this.toggleTaskEdit(id, this.newTask)
+    let {clearedUser, ...newTask} = this.newTask
+    this.toggleTaskEdit(id, newTask)
     this.newTask = {}
   }
 

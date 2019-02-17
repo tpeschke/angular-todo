@@ -24,15 +24,15 @@
 
           <div class="changeUserShell" (click)="toggleUserDropdown()">
             <p class="UserSelect" *ngIf="newTask.assignedUser">{{newTask.assignedUser}}</p>
-            <p class="UserSelect" *ngIf="!newTask.assignedUser">{{task.assignedUser}}</p>
-            <p class="UserSelect" *ngIf="!task.assignedUser && !newTask.assignedUser">Assign User</p>
+            <p class="UserSelect" *ngIf="!newTask.assignedUser && !task.assignedUser || newTask.clearedUser">Assign User</p>
+            <p class="UserSelect" *ngIf="!newTask.assignedUser && task.assignedUser && !newTask.clearedUser">{{task.assignedUser}}</p>
             <div class="triangle"></div>
 
             <div class="userSelectMenu" *ngIf="userDropdown">
               <div *ngFor="let mate of mates" class="mate" (click)="changeUser(mate)">
                 <p>{{mate}}</p>
               </div>
-              <div *ngIf="task.assignedUser || newTask.assignedUser" class="mate"(click)="changeUser(false)">Remove User</div>
+              <div class="mate"(click)="changeUser(false)">Remove User</div>
             </div>
           </div>
         </div>
