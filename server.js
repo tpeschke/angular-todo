@@ -73,7 +73,9 @@ app.patch('/changeBoard', (req, res) => {
     })
 
     mockDB.boards = newBoards
-    res.send(['done'])
+
+    let boards = mockDB.boards.filter(val => val.teamId === teamId)
+    res.send(boards)
 })
 app.patch('/changeGoal', (req, res) => {
     let {id, name} = req.body
