@@ -38,31 +38,35 @@
         </div>
 
         <div class="changeStatusShell" (click)="toggleStatusDropdown()">
-          <div *ngIf="task.status === 'Added' || newTask.status === 'Added'" class="statusCircle"></div>
-          <div *ngIf="task.status === 'In Progress' || newTask.status === 'In Progress'" class="statusCircle inProgress"></div>
-          <div *ngIf="task.status === 'Stuck' || newTask.status === 'Stuck'" class="statusCircle stuck"></div>
-          <div *ngIf="task.status === 'Done' || newTask.status === 'Done'" class="statusCircle done"></div>
+          <div *ngIf="task.status === 'Added' && !newTask.status" class="statusCircle"></div>
+          <div *ngIf="task.status === 'In Progress' && !newTask.status" class="statusCircle inProgress"></div>
+          <div *ngIf="task.status === 'Stuck' && !newTask.status" class="statusCircle stuck"></div>
+          <div *ngIf="task.status === 'Done' && !newTask.status" class="statusCircle done"></div>
+          <div *ngIf="newTask.status === 'Added' && newTask.status" class="statusCircle"></div>
+          <div *ngIf="newTask.status === 'In Progress' && newTask.status" class="statusCircle inProgress"></div>
+          <div *ngIf="newTask.status === 'Stuck' && newTask.status" class="statusCircle stuck"></div>
+          <div *ngIf="newTask.status === 'Done' && newTask.status" class="statusCircle done"></div>
           <p *ngIf="!newTask.status">{{task.status}}</p>
           <p *ngIf="newTask.status">{{newTask.status}}</p>
           <div class="triangle"></div>
 
           <div class="statusSelectMenu" *ngIf="statusDropdown">
-              <div *ngIf="task.status !== 'Added'" class="mate statusChoice" (click)="changeStatus('Added')">
+              <div class="mate statusChoice" (click)="changeStatus('Added')">
                   <div class="statusCircle"></div>
                   <p>Added</p>
                   <div class="statusPlaceholder"></div>
               </div>
-              <div *ngIf="task.status !== 'In Progress'" class="mate statusChoice" (click)="changeStatus('In Progress')">
+              <div class="mate statusChoice" (click)="changeStatus('In Progress')">
                   <div class="statusCircle inProgress"></div>
                   <p>In Progress</p>
                   <div class="statusPlaceholder"></div>
               </div>
-              <div *ngIf="task.status !== 'Stuck'" class="mate statusChoice" (click)="changeStatus('Stuck')">
+              <div class="mate statusChoice" (click)="changeStatus('Stuck')">
                   <div class="statusCircle stuck"></div>
                   <p>Stuck</p>
                   <div class="statusPlaceholder"></div>
               </div>
-              <div *ngIf="task.status !== 'Done'" class="mate statusChoice" (click)="changeStatus('Done')">
+              <div class="mate statusChoice" (click)="changeStatus('Done')">
                   <div class="statusCircle done"></div>
                   <p>Done</p>
                   <div class="statusPlaceholder"></div>
