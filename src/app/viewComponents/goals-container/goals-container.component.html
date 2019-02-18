@@ -11,87 +11,10 @@
   </div>
 
   <div>
-    <div *ngFor="let task of goal.tasks" class="taskShell" cdkDrag>
-      <!-- EDIT TASK -->
-      <div *ngIf="taskEdit === task.id">
-        <div>
-          <input type="text" value="{{task.task}}" class="taskInput" (keyup)="changeName($event)">
-
-          <div class="changeUserShell" (click)="toggleUserDropdown()">
-            <p class="UserSelect" *ngIf="newTask.assignedUser">{{newTask.assignedUser}}</p>
-            <p class="UserSelect" *ngIf="!newTask.assignedUser && !task.assignedUser || newTask.clearedUser">Assign User
-            </p>
-            <p class="UserSelect" *ngIf="!newTask.assignedUser && task.assignedUser && !newTask.clearedUser">
-              {{task.assignedUser}}</p>
-            <div class="triangle"></div>
-
-            <div class="userSelectMenu" *ngIf="userDropdown">
-              <div *ngFor="let mate of mates" class="mate" (click)="changeUser(mate)">
-                <p>{{mate}}</p>
-              </div>
-              <div class="mate" (click)="changeUser(false)">Remove User</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="changeStatusShell" (click)="toggleStatusDropdown()">
-          <div *ngIf="task.status === 'Added' && !newTask.status" class="statusCircle"></div>
-          <div *ngIf="task.status === 'In Progress' && !newTask.status" class="statusCircle inProgress"></div>
-          <div *ngIf="task.status === 'Stuck' && !newTask.status" class="statusCircle stuck"></div>
-          <div *ngIf="task.status === 'Done' && !newTask.status" class="statusCircle done"></div>
-          <div *ngIf="newTask.status === 'Added' && newTask.status" class="statusCircle"></div>
-          <div *ngIf="newTask.status === 'In Progress' && newTask.status" class="statusCircle inProgress"></div>
-          <div *ngIf="newTask.status === 'Stuck' && newTask.status" class="statusCircle stuck"></div>
-          <div *ngIf="newTask.status === 'Done' && newTask.status" class="statusCircle done"></div>
-          <p *ngIf="!newTask.status">{{task.status}}</p>
-          <p *ngIf="newTask.status">{{newTask.status}}</p>
-          <div class="triangle"></div>
-
-          <div class="statusSelectMenu" *ngIf="statusDropdown">
-            <div class="mate statusChoice" (click)="changeStatus('Added')">
-              <div class="statusCircle"></div>
-              <p>Added</p>
-              <div class="statusPlaceholder"></div>
-            </div>
-            <div class="mate statusChoice" (click)="changeStatus('In Progress')">
-              <div class="statusCircle inProgress"></div>
-              <p>In Progress</p>
-              <div class="statusPlaceholder"></div>
-            </div>
-            <div class="mate statusChoice" (click)="changeStatus('Stuck')">
-              <div class="statusCircle stuck"></div>
-              <p>Stuck</p>
-              <div class="statusPlaceholder"></div>
-            </div>
-            <div class="mate statusChoice" (click)="changeStatus('Done')">
-              <div class="statusCircle done"></div>
-              <p>Done</p>
-              <div class="statusPlaceholder"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="editButtonTask" (click)="saveChanges(task.id)">Save Changes</div>
-      </div>
-
-      <!-- DISPLAY TASK -->
-      <div *ngIf="taskEdit !== task.id">
-        <div *ngIf="task.status === 'Added'"></div>
-        <div *ngIf="task.status === 'In Progress'" class="status inProgress"></div>
-        <div *ngIf="task.status === 'Stuck'" class="status stuck"></div>
-        <div *ngIf="task.status === 'Done'" class="status done"></div>
-
-        <div class="taskSelect">
-          <p>{{task.task}}</p>
-          <p *ngIf="task.assignedUser">{{task.assignedUser}}</p>
-          <p *ngIf="!task.assignedUser" class="assignUser">Assign User</p>
-        </div>
-
-        <div class="editPencilTask" (click)="saveChanges(task.id)"></div>
-
-        <div class="delete" (click)="deleteTask(task.id)">X</div>
-      </div>
-    </div>
+      <app-task-container *ngFor="let task of goal.tasks"
+        [task]="task" [taskEdit]="taskEdit" [toggleTaskEdit]="toggleTaskEdit" 
+        [addTask]="addTask" [deleteTask]="deleteTask" 
+        [updateOrder]="updateOrder"></app-task-container>
 
     <div class="addButton" (click)="addTask(goal.id)">+Task</div>
   </div>

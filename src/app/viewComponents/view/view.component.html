@@ -1,27 +1,20 @@
 <div class="headerShell">
   <div class="headerLeft">
     <i class="fa fa-home" routerLink=""></i>
-    <input *ngIf="edit" value="{{board.name}}" (keyup)="changeName($event)" (click)="changeName($event)"/>
+    <input *ngIf="edit" value="{{board.name}}" (keyup)="changeName($event)" (click)="changeName($event)" />
     <h1 *ngIf="!edit" class="boardTitle">{{board.name}}</h1>
   </div>
-  
+
   <div *ngIf="!edit" class="editPencil" (click)="toggleEdit($event, board.id)"></div>
   <div *ngIf="edit" class="editButton" (click)="toggleEdit($event, board.id)">Save Changes</div>
 </div>
 
 <div class="goalShell" cdkDropListGroup>
-  <app-goals-container *ngFor="let goal of board.goals"
-    [goal]="goal"
-    [goalEdit]="goalEdit"
-    [taskEdit]="taskEdit"
-    [toggleGoalEdit]="toggleGoalEdit"
-    [toggleTaskEdit]="toggleTaskEdit"
-    [deleteGoal]="deleteGoal"
-    [addTask]="addTask"
-    [deleteTask]="deleteTask"
-    [updateOrder]="updateOrder"
-    [goalList]="goalList"
-  ></app-goals-container>
+  <app-goals-container *ngFor="let goal of board.goals" 
+    [goal]="goal" [goalEdit]="goalEdit" [taskEdit]="taskEdit"
+    [toggleGoalEdit]="toggleGoalEdit" [toggleTaskEdit]="toggleTaskEdit" 
+    [deleteGoal]="deleteGoal" [addTask]="addTask" [deleteTask]="deleteTask" 
+    [updateOrder]="updateOrder" [goalList]="goalList"></app-goals-container>
 
   <div class="addButtonShell">
     <div class="addButton" (click)="addGoal()">+Goal</div>
