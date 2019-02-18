@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { AppRoutingModule } from '../app-routing.module';
 
-import { ViewComponent } from './viewComponents/view/view.component';
-import { GoalsContainerComponent } from './viewComponents/goals-container/goals-container.component';
-import { TaskContainerComponent } from './viewComponents/task-container/task-container.component';
+import { ViewComponent } from './view/view.component';
+import { GoalsContainerComponent } from './goals-container/goals-container.component';
+import { TaskContainerComponent } from './task-container/task-container.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { TaskContainerComponent } from './viewComponents/task-container/task-con
   ],
   imports: [
     CommonModule,
-    DragDropModule
+    DragDropModule,
+    AppRoutingModule
   ],
   exports: [
     ViewComponent,
