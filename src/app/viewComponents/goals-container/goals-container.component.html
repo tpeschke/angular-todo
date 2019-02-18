@@ -1,18 +1,21 @@
 <div class="goalShell" cdkDropList [cdkDropListData]="goal" (cdkDropListDropped)="changeOrder($event)">
   <div class="goalHeader">
-    <input *ngIf="goalEdit === goal.id" type="text" value="{{goal.name}}" (keyup)="changeName($event)" (click)="changeName($event)" />
+    <input *ngIf="goalEdit === goal.id" type="text" value="{{goal.name}}" (keyup)="changeName($event)"
+      (click)="changeName($event)" />
     <h2 *ngIf="!goalEdit || goalEdit !== goal.id">{{goal.name}}</h2>
 
-    <div *ngIf="!goalEdit || goalEdit !== goal.id" class="editPencil"
-      (click)="toggleGoalEdit($event, goal.id, goal.name)"></div>
-    <div *ngIf="goalEdit === goal.id" class="editButton" (click)="toggleGoalEdit($event, goal.id, goal.name)">Save Changes</div>
+    <div *ngIf="!goalEdit || goalEdit !== goal.id" class="editPencilBackdrop"
+      (click)="toggleGoalEdit($event, goal.id, goal.name)">
+      <div class="editPencil"></div>
+    </div>
+    <div *ngIf="goalEdit === goal.id" class="editButton" (click)="toggleGoalEdit($event, goal.id, goal.name)">Save
+      Changes</div>
   </div>
 
   <div>
-      <app-task-container *ngFor="let task of goal.tasks" cdkDrag
-        [task]="task" [taskEdit]="taskEdit" [toggleTaskEdit]="toggleTaskEdit"
-        [addTask]="addTask" [deleteTask]="deleteTask" 
-        [updateOrder]="updateOrder"></app-task-container>
+    <app-task-container *ngFor="let task of goal.tasks" cdkDrag [task]="task" [taskEdit]="taskEdit"
+      [toggleTaskEdit]="toggleTaskEdit" [addTask]="addTask" [deleteTask]="deleteTask" [updateOrder]="updateOrder">
+    </app-task-container>
 
     <div class="addButton" (click)="addTask(goal.id)">+Task</div>
   </div>

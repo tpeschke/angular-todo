@@ -176,13 +176,29 @@ input {
 }
 
 .editPencilTask {
-    height: 20px;
-    width: 20px;
+    height: 18px;
+    width: 16px;
     background-image: url('../../edit.png');
     background-repeat: no-repeat;
     background-size: contain;
-    margin-left: 25px;
     position: absolute;
-    bottom: 7px;
+    bottom: 3px;
+    right: 3px;
+}
+
+.editPencilBackdrop {
+    height: 25px;
+    width: 25px;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
     right: 0;
+}
+
+.editPencilBackdrop:hover {
+    background:grey;
 }

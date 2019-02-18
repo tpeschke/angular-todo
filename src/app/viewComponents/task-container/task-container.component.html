@@ -1,3 +1,23 @@
+<!-- DISPLAY TASK -->
+<div *ngIf="taskEdit !== task.id" class="taskShell">
+  <div *ngIf="task.status === 'Added'"></div>
+  <div *ngIf="task.status === 'In Progress'" class="status inProgress"></div>
+  <div *ngIf="task.status === 'Stuck'" class="status stuck"></div>
+  <div *ngIf="task.status === 'Done'" class="status done"></div>
+
+  <div class="taskSelect">
+    <p>{{task.task}}</p>
+    <p *ngIf="task.assignedUser">{{task.assignedUser}}</p>
+    <p *ngIf="!task.assignedUser" class="assignUser">Assign User</p>
+  </div>
+
+  <div class="editPencilBackdrop" (click)="saveChanges(task.id)">
+    <div class="editPencilTask"></div>
+  </div>
+
+  <div class="delete" (click)="deleteTask(task.id)">X</div>
+</div>
+
 <!-- EDIT TASK -->
 <div *ngIf="taskEdit === task.id" class="taskShell">
   <div>
@@ -58,22 +78,4 @@
   </div>
 
   <div class="editButtonTask" (click)="saveChanges(task.id)">Save Changes</div>
-</div>
-
-<!-- DISPLAY TASK -->
-<div *ngIf="taskEdit !== task.id" class="taskShell">
-  <div *ngIf="task.status === 'Added'"></div>
-  <div *ngIf="task.status === 'In Progress'" class="status inProgress"></div>
-  <div *ngIf="task.status === 'Stuck'" class="status stuck"></div>
-  <div *ngIf="task.status === 'Done'" class="status done"></div>
-
-  <div class="taskSelect">
-    <p>{{task.task}}</p>
-    <p *ngIf="task.assignedUser">{{task.assignedUser}}</p>
-    <p *ngIf="!task.assignedUser" class="assignUser">Assign User</p>
-  </div>
-
-  <div class="editPencilTask" (click)="saveChanges(task.id)"></div>
-
-  <div class="delete" (click)="deleteTask(task.id)">X</div>
 </div>

@@ -61,12 +61,25 @@ input {
 }
 
 .editPencil {
-    height: 20px;
-    width: 20px;
+    height: 18px;
+    width: 15px;
     background-image: url('../../edit.png');
     background-repeat: no-repeat;
     background-size: contain;
+}
+
+.editPencilBackdrop {
+    height: 25px;
+    width: 25px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     margin-left: 25px;
+}
+
+.editPencilBackdrop:hover {
+    background:grey;
 }
 
 .editButton {

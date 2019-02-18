@@ -5,7 +5,9 @@
       <input *ngIf="edit === board.id" value="{{board.name}}" (keyup)="changeName($event)" (click)="changeName($event)"/>
       <p *ngIf="!edit || edit !== board.id">{{board.name}}</p>
 
-      <div *ngIf="!edit || edit !== board.id" class="editPencil" (click)="toggleEdit($event, board.id)"></div>
+      <div *ngIf="!edit || edit !== board.id" class="editPencilBackdrop" (click)="toggleEdit($event, board.id)">
+        <div class="editPencil"></div>
+      </div>
       <div *ngIf="edit === board.id" class="editButton" (click)="toggleEdit($event, board.id)">Save Changes</div>
   
       <div class="delete" (click)="removeBoard(board.id, $event)">X</div>
