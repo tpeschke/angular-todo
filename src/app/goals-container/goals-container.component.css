@@ -70,26 +70,63 @@ input {
     background: rgba(165, 0, 0, 0.75);
 }
 
-.editTask {
+.editPencil {
+    height: 20px;
+    width: 20px;
+    background-image: url('../edit.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-left: 25px;
+}
+
+.editButtonTask {
+    background: rgba(30, 155, 30, 0.75);
+    border-radius: 10px;
     height: 25px;
-    width: 25px;
+    width: 85px;
+    font-size: 13px;
+    font-weight: bold;
     color: white;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    border-top-left-radius: 10px;
-    border-bottom-right-radius: 10px;
     position: absolute;
-    bottom: 0;
+    bottom: 5px;
+    right: 18px;
+}
+
+.editButtonTask:hover {
+    background: rgba(1, 100, 1, 0.75);
+}
+
+.editPencilTask {
+    height: 20px;
+    width: 20px;
+    background-image: url('../edit.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-left: 25px;
+    position: absolute;
+    bottom: 7px;
     right: 0;
 }
 
-.editGoal .editDot {
-    background: grey;
+.editButton {
+    background: rgba(30, 155, 30, 0.75);
+    border-radius: 10px;
+    height: 25px;
+    width: 85px;
+    font-size: 13px;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 20px 0 10px;
 }
 
-.editGoal:hover .editDot {
-    background: whitesmoke;
+.editButton:hover {
+    background: rgba(1, 100, 1, 0.75);
 }
 
 .editGoal {
@@ -105,10 +142,6 @@ input {
     width: 5px;
     background: rgb(163, 163, 163, .75);
     border-radius: 5px;
-}
-
-.editTask:hover .editDot {
-    background: grey;
 }
 
 .status {

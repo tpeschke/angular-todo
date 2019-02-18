@@ -4,11 +4,9 @@
     <input *ngIf="edit" value="{{board.name}}" (keyup)="changeName($event)" (click)="changeName($event)"/>
     <h1 *ngIf="!edit" class="boardTitle">{{board.name}}</h1>
   </div>
-  <div class="editDots" (click)="toggleEdit($event, board.id)">
-      <div class="dot"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-    </div>
+  
+  <div *ngIf="!edit" class="editPencil" (click)="toggleEdit($event, board.id)"></div>
+  <div *ngIf="edit" class="editButton" (click)="toggleEdit($event, board.id)">Save Changes</div>
 </div>
 
 <div class="goalShell" cdkDropListGroup>

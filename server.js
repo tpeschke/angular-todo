@@ -79,15 +79,17 @@ app.patch('/changeBoard', (req, res) => {
 })
 app.patch('/changeGoal', (req, res) => {
     let {id, name} = req.body
+    let boardId = 0;
     let newGoals = mockDB.goals.map(val => {
         if (val.id === +id) {
+            boardId = val.boardId
             return Object.assign({}, val, {id, name})
         }
         return val
     })
     mockDB.goals = newGoals
 
-    res.send(['done'])
+    res.send([boardId])
 })
 app.patch('/changeTask', (req, res) => {
     let {body: task} = req.body

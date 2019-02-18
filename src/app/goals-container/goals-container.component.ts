@@ -60,7 +60,6 @@ export class GoalsContainerComponent implements OnInit {
       clearedUser = true
     }
     this.newTask = Object.assign({}, this.newTask, { assignedUser, clearedUser })
-    console.log(this.newTask)
   }
 
   changeStatus(status): void {

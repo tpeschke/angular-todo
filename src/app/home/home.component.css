@@ -22,24 +22,12 @@ input {
     box-shadow: 2px 2px 2px grey;
 }
 
-.editDots {
+.editPencil {
     height: 25px;
-    width: 35px;
+    background-image: url('../edit.png');
+    background-repeat: no-repeat;
+    background-size: contain;
     margin-top: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.editDots:hover .dot {
-    background: grey;
-}
-
-.dot {
-    height: 10px;
-    width: 10px;
-    background: rgb(163, 163, 163, .75);
-    border-radius: 10px;
 }
 
 .delete {
@@ -76,6 +64,24 @@ input {
 }
 
 .addButton:hover {
+    background: rgba(1, 100, 1, 0.75);
+}
+
+.editButton {
+    background: rgba(30, 155, 30, 0.75);
+    border-radius: 10px;
+    height: 25px;
+    width: 120px;
+    size: 15px;
+    margin-top: 10px;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.editButton:hover {
     background: rgba(1, 100, 1, 0.75);
 }
 

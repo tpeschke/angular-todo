@@ -1,38 +1,35 @@
-<div class="goalShell"
-  cdkDropList 
-  [cdkDropListData]="goal"
-  (cdkDropListDropped)="changeOrder($event)" 
-  >
+<div class="goalShell" cdkDropList [cdkDropListData]="goal" (cdkDropListDropped)="changeOrder($event)">
   <div class="goalHeader">
     <input *ngIf="goalEdit === goal.id" type="text" value="{{goal.name}}" (keyup)="changeName($event)"
       (click)="changeName($event)" />
     <h2 *ngIf="!goalEdit || goalEdit !== goal.id">{{goal.name}}</h2>
 
-    <div class="editGoal" (click)="toggleGoalEdit($event, goal.id, goal.name)">
-      <div class="editDot"></div>
-      <div class="editDot"></div>
-      <div class="editDot"></div>
-    </div>
+    <div *ngIf="!goalEdit || goalEdit !== goal.id" class="editPencil"
+      (click)="toggleGoalEdit($event, goal.id, goal.name)"></div>
+    <div *ngIf="goalEdit === goal.id" class="editButton" (click)="toggleGoalEdit($event, goal.id, goal.name)">Save
+      Changes</div>
   </div>
 
   <div>
     <div *ngFor="let task of goal.tasks" class="taskShell" cdkDrag>
-        <!-- EDIT TASK -->
+      <!-- EDIT TASK -->
       <div *ngIf="taskEdit === task.id">
         <div>
           <input type="text" value="{{task.task}}" class="taskInput" (keyup)="changeName($event)">
 
           <div class="changeUserShell" (click)="toggleUserDropdown()">
             <p class="UserSelect" *ngIf="newTask.assignedUser">{{newTask.assignedUser}}</p>
-            <p class="UserSelect" *ngIf="!newTask.assignedUser && !task.assignedUser || newTask.clearedUser">Assign User</p>
-            <p class="UserSelect" *ngIf="!newTask.assignedUser && task.assignedUser && !newTask.clearedUser">{{task.assignedUser}}</p>
+            <p class="UserSelect" *ngIf="!newTask.assignedUser && !task.assignedUser || newTask.clearedUser">Assign User
+            </p>
+            <p class="UserSelect" *ngIf="!newTask.assignedUser && task.assignedUser && !newTask.clearedUser">
+              {{task.assignedUser}}</p>
             <div class="triangle"></div>
 
             <div class="userSelectMenu" *ngIf="userDropdown">
               <div *ngFor="let mate of mates" class="mate" (click)="changeUser(mate)">
                 <p>{{mate}}</p>
               </div>
-              <div class="mate"(click)="changeUser(false)">Remove User</div>
+              <div class="mate" (click)="changeUser(false)">Remove User</div>
             </div>
           </div>
         </div>
@@ -51,34 +48,36 @@
           <div class="triangle"></div>
 
           <div class="statusSelectMenu" *ngIf="statusDropdown">
-              <div class="mate statusChoice" (click)="changeStatus('Added')">
-                  <div class="statusCircle"></div>
-                  <p>Added</p>
-                  <div class="statusPlaceholder"></div>
-              </div>
-              <div class="mate statusChoice" (click)="changeStatus('In Progress')">
-                  <div class="statusCircle inProgress"></div>
-                  <p>In Progress</p>
-                  <div class="statusPlaceholder"></div>
-              </div>
-              <div class="mate statusChoice" (click)="changeStatus('Stuck')">
-                  <div class="statusCircle stuck"></div>
-                  <p>Stuck</p>
-                  <div class="statusPlaceholder"></div>
-              </div>
-              <div class="mate statusChoice" (click)="changeStatus('Done')">
-                  <div class="statusCircle done"></div>
-                  <p>Done</p>
-                  <div class="statusPlaceholder"></div>
-              </div>
+            <div class="mate statusChoice" (click)="changeStatus('Added')">
+              <div class="statusCircle"></div>
+              <p>Added</p>
+              <div class="statusPlaceholder"></div>
             </div>
+            <div class="mate statusChoice" (click)="changeStatus('In Progress')">
+              <div class="statusCircle inProgress"></div>
+              <p>In Progress</p>
+              <div class="statusPlaceholder"></div>
+            </div>
+            <div class="mate statusChoice" (click)="changeStatus('Stuck')">
+              <div class="statusCircle stuck"></div>
+              <p>Stuck</p>
+              <div class="statusPlaceholder"></div>
+            </div>
+            <div class="mate statusChoice" (click)="changeStatus('Done')">
+              <div class="statusCircle done"></div>
+              <p>Done</p>
+              <div class="statusPlaceholder"></div>
+            </div>
+          </div>
         </div>
-
+<!-- 
         <div class="editTask" (click)="saveChanges(task.id)">
           <div class="editDot"></div>
           <div class="editDot"></div>
           <div class="editDot"></div>
-        </div>
+        </div> -->
+
+        <div class="editButtonTask" (click)="saveChanges(task.id)">Save Changes</div>
       </div>
 
       <!-- DISPLAY TASK -->
@@ -94,11 +93,7 @@
           <p *ngIf="!task.assignedUser" class="assignUser">Assign User</p>
         </div>
 
-        <div class="editTask" (click)="saveChanges(task.id)">
-          <div class="editDot"></div>
-          <div class="editDot"></div>
-          <div class="editDot"></div>
-        </div>
+        <div class="editPencilTask" (click)="saveChanges(task.id)"></div>
 
         <div class="delete" (click)="deleteTask(task.id)">X</div>
       </div>
