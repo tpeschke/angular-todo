@@ -13,7 +13,8 @@
   <app-goals-container *ngFor="let goal of board.goals" 
     [goal]="goal" [goalEdit]="goalEdit" [taskEdit]="taskEdit"
     [toggleGoalEdit]="toggleGoalEdit" [toggleTaskEdit]="toggleTaskEdit" 
-    [deleteGoal]="deleteGoal" [addTask]="addTask" [deleteTask]="deleteTask" 
+    [deleteGoal]="deleteGoal" [addTask]="addTask" [deleteTask]="deleteTask"
+    [changeName] = 'changeName' 
     [updateOrder]="updateOrder" [goalList]="goalList"></app-goals-container>
 
   <div class="addButtonShell">

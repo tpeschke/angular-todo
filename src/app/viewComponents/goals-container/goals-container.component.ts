@@ -21,6 +21,7 @@ export class GoalsContainerComponent implements OnInit {
   @Input() toggleTaskEdit: Function;
   @Input() updateOrder: Function;
   @Input() goalList: Array<number>;
+  @Input() changeName: Function;
 
   ngOnInit() {
   }
