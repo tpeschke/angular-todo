@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpcallsService } from '../httpcalls.service';
+import { HttpfacadeService } from '../httpFacade/httpfacade.service'
 
 @Component({
   selector: 'app-home',
@@ -9,7 +9,7 @@ import { HttpcallsService } from '../httpcalls.service';
 export class HomeComponent implements OnInit {
 
   constructor(
-    private httpService: HttpcallsService
+    private httpService: HttpfacadeService
   ) { }
 
   public boards: Array<any> = []
@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   public newName: string = ''
 
   ngOnInit(): void {
-    this.httpService.getBoards(1)
+    this.httpService.getsService.getBoards(1)
       .subscribe(boards => {
         this.boards = boards
       })
@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
       this.edit = id
     } else {
       let name = this.newName === '' ? this.boards.filter(val => val.id === id)[0].name : this.newName
-      this.httpService.changeBoard(+id, name)
+      this.httpService.patchsService.changeBoard(+id, name, false)
         .subscribe(boards => {
           this.boards = boards
           this.edit = false
@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
   }
 
   addBoard(): void {
-    this.httpService.addBoard()
+    this.httpService.postsService.addBoard()
       .subscribe(boards => {
         this.boards = boards
       })
@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
 
   removeBoard(id, e): void {
     e.stopPropagation()
-    this.httpService.deleteBoard(1, id)
+    this.httpService.deletesService.deleteBoard(1, id)
       .subscribe(boards => {
         this.boards = boards
       })

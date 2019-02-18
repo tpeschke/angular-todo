@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { HttpcallsService } from '../../httpcalls.service';
+import { HttpfacadeService } from 'src/app/httpFacade/httpfacade.service';
 
 @Component({
   selector: 'app-task-container',
@@ -9,7 +9,7 @@ import { HttpcallsService } from '../../httpcalls.service';
 export class TaskContainerComponent implements OnInit {
 
   constructor(
-    private httpService: HttpcallsService
+    private httpService: HttpfacadeService
   ) { }
 
   @Input() task: any;
@@ -25,7 +25,7 @@ export class TaskContainerComponent implements OnInit {
   public mates: Array<string> = [];
 
   ngOnInit() {
-    this.httpService.getTeamMates()
+    this.httpService.getsService.getTeamMates()
       .subscribe(mates => {
         this.mates = mates
       })

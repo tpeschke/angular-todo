@@ -1,6 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { HttpcallsService } from '../../httpcalls.service';
 import { ActivatedRoute } from '@angular/router';
+import { HttpfacadeService } from 'src/app/httpFacade/httpfacade.service';
 
 @Component({
   selector: 'app-view',
@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ViewComponent implements OnInit {
 
   constructor(
-    private httpService: HttpcallsService,
+    private httpService: HttpfacadeService,
     private route: ActivatedRoute
   ) { }
 
@@ -23,7 +23,7 @@ export class ViewComponent implements OnInit {
 
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get('id')
-    this.httpService.getBoard(id)
+    this.httpService.getsService.getBoard(id)
       .subscribe(board => {
         this.board = board
         this.goalList = this.board.goals.map(val => val.id)
@@ -36,7 +36,7 @@ export class ViewComponent implements OnInit {
       this.edit = true
     } else {
       let name = this.newName === '' ? this.board.name : this.newName
-      this.httpService.changeBoard(+id, name, true)
+      this.httpService.patchsService.changeBoard(+id, name, true)
         .subscribe(board => {
           this.board = board
           this.newName = ''
@@ -51,7 +51,7 @@ export class ViewComponent implements OnInit {
       this.goalEdit = +id
     } else {
       let name = this.newName === '' ? newName : this.newName
-      this.httpService.changeGoal(+id, name)
+      this.httpService.patchsService.changeGoal(+id, name)
         .subscribe(board => {
           this.board = board
           this.newName = ''
@@ -64,7 +64,7 @@ export class ViewComponent implements OnInit {
     if (!this.taskEdit && +id) {
       this.taskEdit = +id
     } else {
-      this.httpService.changeTask({ id, ...body })
+      this.httpService.patchsService.changeTask({ id, ...body })
         .subscribe(board => {
           this.board = board
           this.taskEdit = false
@@ -78,35 +78,35 @@ export class ViewComponent implements OnInit {
   }
 
   addGoal(): void {
-    this.httpService.addGoal(this.board.id)
+    this.httpService.postsService.addGoal(this.board.id)
       .subscribe(board => {
         this.board = board
       })
   }
 
   deleteGoal = (id): void => {
-    this.httpService.deleteGoal(id)
+    this.httpService.deletesService.deleteGoal(id)
       .subscribe(board => {
         this.board = board
       })
   }
 
   addTask = (id): void => {
-    this.httpService.addTask(id)
+    this.httpService.postsService.addTask(id)
       .subscribe(board => {
         this.board = board
       })
   }
 
   deleteTask = (id): void => {
-    this.httpService.deleteTask(id)
+    this.httpService.deletesService.deleteTask(id)
       .subscribe(board => {
         this.board = board
       })
   }
 
   updateOrder = (body): void => {
-    this.httpService.changeTask(body)
+    this.httpService.patchsService.changeTask(body)
       .subscribe(board => {
         this.board = board
       })
