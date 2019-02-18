@@ -24,8 +24,8 @@ export class GoalsContainerComponent implements OnInit {
   @Input() updateOrder: Function;
   @Input() goalList: Array<number>;
 
-  public userDropdown: Boolean | number = false;
-  public statusDropdown: Boolean | number = false;
+  public userDropdown: boolean | number = false;
+  public statusDropdown: boolean | number = false;
   public mates: Array<string> = [];
   public newTask: any = {};
 

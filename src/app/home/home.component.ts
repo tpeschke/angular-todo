@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   public boards: Array<any> = []
-  public edit: Boolean | number = false
+  public edit: boolean | number = false
   public newName: string = ''
 
   ngOnInit(): void {

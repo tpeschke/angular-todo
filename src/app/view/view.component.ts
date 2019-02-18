@@ -15,9 +15,9 @@ export class ViewComponent implements OnInit {
   ) { }
 
   public board: any = {}
-  public edit: Boolean = false
-  public goalEdit: Boolean | number = false
-  public taskEdit: Boolean | number = false
+  public edit: boolean = false
+  public goalEdit: boolean | number = false
+  public taskEdit: boolean | number = false
   public newName: string = ''
   public goalList: Array<number> = []
 
