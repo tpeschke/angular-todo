@@ -1,35 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, Observer } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
-
-class Board {
-  id: number
-  name: string
-  teamId: number
-}
-
-class Goal {
-  id: number
-  name: string
-  boardId: number
-  tasks: Task[]
-}
-
-class Task {
-  id: number
-  task: string
-  status: string
-  goalId: number
-  assignedUser: any
-}
-
-class SingleBoard {
-  id: number
-  name: string
-  teamId: number
-  goals: Goal[]
-}
+import { Board, SingleBoard, Goal } from './classes'
 
 @Injectable({
   providedIn: 'root'
