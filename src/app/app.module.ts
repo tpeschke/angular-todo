@@ -1,26 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ViewModule } from './view.module'
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { ViewComponent } from './view/view.component';
 import { AppRoutingModule } from './app-routing.module';
-import { GoalsContainerComponent } from './goals-container/goals-container.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    ViewComponent,
-    GoalsContainerComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    DragDropModule
+    ViewModule
   ],
   providers: [],
   bootstrap: [AppComponent]

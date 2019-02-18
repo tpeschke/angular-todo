@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { HttpcallsService } from '../httpcalls.service';
+import { HttpcallsService } from '../../httpcalls.service';
 import { transferArrayItem, moveItemInArray } from '@angular/cdk/drag-drop'
 
 @Component({

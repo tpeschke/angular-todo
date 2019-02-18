@@ -73,7 +73,7 @@ input {
 .editPencil {
     height: 20px;
     width: 20px;
-    background-image: url('../edit.png');
+    background-image: url('../../edit.png');
     background-repeat: no-repeat;
     background-size: contain;
     margin-left: 25px;
@@ -102,7 +102,7 @@ input {
 .editPencilTask {
     height: 20px;
     width: 20px;
-    background-image: url('../edit.png');
+    background-image: url('../../edit.png');
     background-repeat: no-repeat;
     background-size: contain;
     margin-left: 25px;

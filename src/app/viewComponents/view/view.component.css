@@ -51,7 +51,7 @@ input {
 .editPencil {
     height: 25px;
     width: 25px;
-    background-image: url('../edit.png');
+    background-image: url('../../edit.png');
     background-repeat: no-repeat;
     background-size: contain;
 }

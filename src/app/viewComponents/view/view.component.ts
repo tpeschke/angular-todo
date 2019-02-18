@@ -1,5 +1,5 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { HttpcallsService } from '../httpcalls.service';
+import { HttpcallsService } from '../../httpcalls.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
