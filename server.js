@@ -63,7 +63,7 @@ app.post('/addTask', (req, res) => {
 })
 
 app.patch('/changeBoard', (req, res) => {
-    let {id, name} = req.body
+    let {id, name, single} = req.body
     let teamId = 0
     let newBoards = mockDB.boards.map(val => {
         if (val.id === id) {
@@ -75,8 +75,18 @@ app.patch('/changeBoard', (req, res) => {
 
     mockDB.boards = newBoards
 
-    let boards = mockDB.boards.filter(val => val.teamId === teamId)
-    res.send(boards)
+    if (single) {
+        let board = mockDB.boards.filter(val => val.id === +id)[0]
+        let goals = mockDB.goals.filter(val => val.boardId === +id).map(val => {
+            let tasks = mockDB.tasks.filter(v => v.goalId === val.id).sort((a,b)=> a.index > b.index)
+            return {...val, tasks}
+        })
+        res.send({...board, goals})
+    } else {
+        let boards = mockDB.boards.filter(val => val.teamId === teamId)
+        res.send(boards)
+    }
+
 })
 app.patch('/changeGoal', (req, res) => {
     let {id, name} = req.body
@@ -90,7 +100,13 @@ app.patch('/changeGoal', (req, res) => {
     })
     mockDB.goals = newGoals
 
-    res.send([boardId])
+    let board = mockDB.boards.filter(val => val.id === boardId)[0]
+    let goals = mockDB.goals.filter(val => val.boardId === boardId).map(val => {
+        let tasks = mockDB.tasks.filter(v => v.goalId === val.id).sort((a,b)=> a.index > b.index)
+        return {...val, tasks}
+    })
+
+    res.send({...board, goals})
 })
 app.patch('/changeTask', (req, res) => {
     let {body: task} = req.body
@@ -114,7 +130,13 @@ app.patch('/changeTask', (req, res) => {
     mockDB.tasks = updatedTasks
 
     let {boardId} = mockDB.goals.filter(val => val.id === goalId)[0]
-    res.send([boardId])
+    let board = mockDB.boards.filter(val => val.id === boardId)[0]
+    let goals = mockDB.goals.filter(val => val.boardId === boardId).map(val => {
+        let tasks = mockDB.tasks.filter(v => v.goalId === val.id).sort((a,b)=> a.index > b.index)
+        return {...val, tasks}
+    })
+    
+    res.send({...board, goals})
 })
 
 app.delete('/removeBoard/:team', ({query, params}, res) => {
@@ -146,7 +168,7 @@ app.delete('/removeGoal/:id', (req, res) => {
     let {id} = req.params
     let newTasks = []
     let newGoals = []
-    let {boardId} = mockDB.goals.filter(val => val.id === +id)[0]
+    let boardId = 0
 
     mockDB.goals.forEach(val => {
         if (val.id !== +id) {
@@ -156,13 +178,20 @@ app.delete('/removeGoal/:id', (req, res) => {
                     newTasks.push(v) 
                 }
             })
+        } else {
+            boardId = val.boardId
         }
     })
 
     mockDB.goals = newGoals
     mockDB.tasks = newTasks
 
-    res.send([boardId])
+    let board = mockDB.boards.filter(val => val.id === boardId)[0]
+    let goals = mockDB.goals.filter(val => val.boardId === boardId).map(val => {
+        let tasks = mockDB.tasks.filter(v => v.goalId === val.id).sort((a,b)=> a.index > b.index)
+        return {...val, tasks}
+    })
+    res.send({...board, goals})
 })
 app.delete('/removeTask/:id', (req, res) => {
     let {id} = req.params

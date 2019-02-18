@@ -36,14 +36,11 @@ export class ViewComponent implements OnInit {
       this.edit = true
     } else {
       let name = this.newName === '' ? this.board.name : this.newName
-      this.httpService.changeBoard(+id, name)
-        .subscribe(_ => {
-          this.httpService.getBoard(+id)
-            .subscribe(board => {
-              this.board = board
-              this.newName = ''
-              this.edit = false
-            })
+      this.httpService.changeBoard(+id, name, true)
+        .subscribe(board => {
+          this.board = board
+          this.newName = ''
+          this.edit = false
         })
     }
   }
@@ -55,13 +52,10 @@ export class ViewComponent implements OnInit {
     } else {
       let name = this.newName === '' ? newName : this.newName
       this.httpService.changeGoal(+id, name)
-        .subscribe(boardId => {
-          this.httpService.getBoard(boardId[0])
-            .subscribe(board => {
-              this.board = board
-              this.newName = ''
-              this.goalEdit = false
-            })
+        .subscribe(board => {
+          this.board = board
+          this.newName = ''
+          this.goalEdit = false
         })
     }
   }
@@ -71,12 +65,9 @@ export class ViewComponent implements OnInit {
       this.taskEdit = +id
     } else {
       this.httpService.changeTask({ id, ...body })
-        .subscribe(boardId => {
-          this.httpService.getBoard(boardId[0])
-            .subscribe(board => {
-              this.board = board
-              this.taskEdit = false
-            })
+        .subscribe(board => {
+          this.board = board
+          this.taskEdit = false
         })
     }
   }
@@ -95,11 +86,8 @@ export class ViewComponent implements OnInit {
 
   deleteGoal = (id): void => {
     this.httpService.deleteGoal(id)
-      .subscribe(boardId => {
-        this.httpService.getBoard(boardId[0])
-          .subscribe(board => {
-            this.board = board
-          })
+      .subscribe(board => {
+        this.board = board
       })
   }
 
@@ -119,12 +107,8 @@ export class ViewComponent implements OnInit {
 
   updateOrder = (body): void => {
     this.httpService.changeTask(body)
-      .subscribe(boardId => {
-        this.httpService.getBoard(boardId[0])
-          .subscribe(board => {
-            this.board = board
-          })
+      .subscribe(board => {
+        this.board = board
       })
   }
-
 }

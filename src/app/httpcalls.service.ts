@@ -94,8 +94,8 @@ export class HttpcallsService {
 
   // PATCH
 
-  changeBoard(id, name): Observable<Board[]> {
-    return this.http.patch<Board[]>(`http://localhost:3434/changeBoard`, { id, name })
+  changeBoard(id, name, single): Observable<Board[]> {
+    return this.http.patch<Board[]>(`http://localhost:3434/changeBoard`, { id, name, single })
       .pipe(
         tap(_ => console.log, catchError(this.handleError('change board', [])))
       )
