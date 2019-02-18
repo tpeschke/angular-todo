@@ -95,8 +95,11 @@ export class ViewComponent implements OnInit {
 
   deleteGoal = (id): void => {
     this.httpService.deleteGoal(id)
-      .subscribe(board => {
-        this.board = board
+      .subscribe(boardId => {
+        this.httpService.getBoard(boardId[0])
+          .subscribe(board => {
+            this.board = board
+          })
       })
   }
 
