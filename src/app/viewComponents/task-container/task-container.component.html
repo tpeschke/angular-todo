@@ -1,5 +1,5 @@
 <!-- EDIT TASK -->
-<div *ngIf="taskEdit === task.id">
+<div *ngIf="taskEdit === task.id" class="taskShell">
   <div>
     <input type="text" value="{{task.task}}" class="taskInput" (keyup)="changeName($event)">
 

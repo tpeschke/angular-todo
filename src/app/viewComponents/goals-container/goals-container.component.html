@@ -11,8 +11,8 @@
   </div>
 
   <div>
-      <app-task-container *ngFor="let task of goal.tasks"
-        [task]="task" [taskEdit]="taskEdit" [toggleTaskEdit]="toggleTaskEdit" 
+      <app-task-container *ngFor="let task of goal.tasks" cdkDrag
+        [task]="task" [taskEdit]="taskEdit" [toggleTaskEdit]="toggleTaskEdit"
         [addTask]="addTask" [deleteTask]="deleteTask" 
         [updateOrder]="updateOrder"></app-task-container>
 

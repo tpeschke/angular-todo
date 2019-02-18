@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { HttpcallsService } from '../../httpcalls.service';
 
 @Component({
   selector: 'app-task-container',
@@ -7,7 +8,9 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TaskContainerComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private httpService: HttpcallsService
+  ) { }
 
   @Input() task: any;
   @Input() taskEdit: string | boolean;
@@ -16,7 +19,46 @@ export class TaskContainerComponent implements OnInit {
   @Input() toggleTaskEdit: Function;
   @Input() updateOrder: Function;
 
+  public newTask: any = {};
+  public userDropdown: boolean | number = false;
+  public statusDropdown: boolean | number = false;
+  public mates: Array<string> = [];
+
   ngOnInit() {
+    this.httpService.getTeamMates()
+      .subscribe(mates => {
+        this.mates = mates
+      })
+  }
+ 
+  toggleUserDropdown(): void {
+    this.userDropdown = !this.userDropdown
+  }
+
+  toggleStatusDropdown(): void {
+    this.statusDropdown = !this.statusDropdown
+  }
+
+  saveChanges(id): void {
+    // let {clearedUser, ...newTask} = this.newTask
+    this.toggleTaskEdit(id, this.newTask)
+    this.newTask = {}
+  }
+
+  changeUser(assignedUser): void {
+    let clearedUser = false
+    if (!assignedUser) {
+      clearedUser = true
+    }
+    this.newTask = Object.assign({}, this.newTask, { assignedUser, clearedUser })
+  }
+
+  changeStatus(status): void {
+    this.newTask = Object.assign({}, this.newTask, { status })
+  }
+
+  changeName(e): void {
+    this.newTask = Object.assign({}, this.newTask, { task: e.target.value })
   }
 
 }
