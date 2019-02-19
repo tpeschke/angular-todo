@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GetsService } from './gets.service';
+import { GoalHTTPService } from './goal-http.service';
 
-describe('GetsService', () => {
+describe('GoalHTTPService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: GetsService = TestBed.get(GetsService);
+    const service: GoalHTTPService = TestBed.get(GoalHTTPService);
     expect(service).toBeTruthy();
   });
 });

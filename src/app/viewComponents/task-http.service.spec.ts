@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DeletesService } from './deletes.service';
+import { TaskHTTPService } from './task-http.service';
 
-describe('DeletesService', () => {
+describe('TaskHTTPService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: DeletesService = TestBed.get(DeletesService);
+    const service: TaskHTTPService = TestBed.get(TaskHTTPService);
     expect(service).toBeTruthy();
   });
 });

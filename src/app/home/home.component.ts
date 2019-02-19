@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpfacadeService } from '../httpFacade/httpfacade.service'
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -9,15 +9,15 @@ import { HttpfacadeService } from '../httpFacade/httpfacade.service'
 export class HomeComponent implements OnInit {
 
   constructor(
-    private httpService: HttpfacadeService
+    private http: HttpClient
   ) { }
 
-  public boards: Array<any> = []
+  public boards: any = []
   public edit: boolean | number = false
   public newName: string = ''
 
   ngOnInit(): void {
-    this.httpService.getsService.getBoards(1)
+    this.http.get(`http://localhost:3434/teamBoards/1`)
       .subscribe(boards => {
         this.boards = boards
       })
@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
       this.edit = id
     } else {
       let name = this.newName === '' ? this.boards.filter(val => val.id === id)[0].name : this.newName
-      this.httpService.patchsService.changeBoard(+id, name, false)
+      this.http.patch(`http://localhost:3434/changeBoard`, { id, name, single: false })
         .subscribe(boards => {
           this.boards = boards
           this.edit = false
@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
   }
 
   addBoard(): void {
-    this.httpService.postsService.addBoard()
+    this.http.post(`http://localhost:3434/addBoard`, { teamId: 1 })
       .subscribe(boards => {
         this.boards = boards
       })
@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
 
   removeBoard(id, e): void {
     e.stopPropagation()
-    this.httpService.deletesService.deleteBoard(1, id)
+    this.http.delete(`http://localhost:3434/removeBoard/1?id=${id}`)
       .subscribe(boards => {
         this.boards = boards
       })
